@@ -15,37 +15,37 @@
     <section class="hero hero-home no-padding">
       <!-- Hero Slider-->
       <div class="owl-carousel owl-theme hero-slider">
-        <div style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/hero-bg.jpg);" class="item d-flex align-items-center has-pattern">
+        <div style="background: url(/img/mainTest.png);" class="item d-flex align-items-center has-pattern">
           <div class="container">
             <div class="row">
               <div class="col-lg-6">
-                <h1>Hub</h1>
+                <h1>에어파파</h1>
                 <ul class="lead"> 
-                  <li><strong>Bootstrap 4 E-commerce</strong> template</li>
+                  <li><strong>AirPapa</strong></li>
                   <li><strong>24</strong> pages, <strong>6</strong> colour variants</li>
                   <li><strong>SCSS</strong> sources </li>
                   <li>frequent & <strong>free updates</strong></li>
-                </ul><a href="#" class="btn btn-template wide shop-now">Shop Now<i class="icon-bag"> </i></a>
+                </ul><a href="#" class="btn btn-template wide shop-now">자세히 보기<i class="icon-bag"> </i></a>
               </div>
             </div>
           </div>
         </div>
-        <div style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/hero-bg-2.jpg);" class="item d-flex align-items-center">
+        <div style="background: url(/img/mainTest2.jpg);" class="item d-flex align-items-center">
           <div class="container">
             <div class="row">
               <div class="col-lg-6 text-white">
-                <h1>Labore et dolore magna aliqua</h1>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="btn btn-template wide shop-now">Shop Now<i class="icon-bag">  </i></a>
+                <h1>친환경 돈사 시스템</h1>
+                <p class="lead">산화질소를 포함한 플라스마 생성 기술을 통한 악취 제거 및 병원성 세균 멸균 친환경 동물 복지형 축사 시스템.</p><a href="#" class="btn btn-template wide shop-now">자세히 보기<i class="icon-bag">  </i></a>
               </div>
             </div>
           </div>
         </div>
-        <div style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/hero-bg-3.jpg);" class="item d-flex align-items-center">
+        <div style="background: url(/img/mainTest3.jpg);" class="item d-flex align-items-center">
           <div class="container">
             <div class="row">
               <div class="col-lg-6 text-white">
-                <h1>Sed do eiusmod tempor</h1>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="btn btn-template wide shop-now">Shop Now<i class="icon-bag">           </i></a>
+                <h1>친환경 수산 시스템</h1>
+                <p class="lead">수소 클러스터 작용을 통한 이온화 작용, 전자유기작용 및 활성기체를 생성하여 산화, 환원, 응집반응으로 수질정화, 살균하여 최상의 수질상태 유지 시스템</p><a href="#" class="btn btn-template wide shop-now">자세히 보기<i class="icon-bag">           </i></a>
               </div>
             </div>
           </div>
