@@ -22,9 +22,9 @@
             <ul class="navbar-nav mx-auto">
               <li class="nav-item dropdown"><a id="navbarHomeLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active">Introduction<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownHomeLink" class="dropdown-menu">
-                  <li><a href="index.html" class="dropdown-item">회사 소개</a></li>
-                  <li><a href="index2.html" class="dropdown-item">조직도</a></li>
-                  <li><a href="index3.html" class="dropdown-item">오시는길</a></li>
+                  <li><a href="/introduction/intro.do" class="dropdown-item">회사 소개</a></li>
+                  <li><a href="/introduction/groupChart.do" class="dropdown-item">조직도</a></li>
+                  <li><a href="/introduction/road.do" class="dropdown-item">오시는길</a></li>
                 </ul>
               </li>
                <li class="nav-item dropdown"><a id="navbarAirLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Air Eco<i class="fa fa-angle-down"></i></a>
