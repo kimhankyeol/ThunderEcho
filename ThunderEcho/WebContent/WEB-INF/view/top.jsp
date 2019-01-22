@@ -29,7 +29,7 @@
               </li>
                <li class="nav-item dropdown"><a id="navbarAirLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Air Eco<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownAirLink" class="dropdown-menu">
-                  <li><a href="index.html" class="dropdown-item">에어파파1</a></li>
+                  <li><a href="/airEco/airpapa.do" class="dropdown-item">에어파파1</a></li>
                   <li><a href="index2.html" class="dropdown-item">멸균기</a></li>
                 </ul>
               </li>
