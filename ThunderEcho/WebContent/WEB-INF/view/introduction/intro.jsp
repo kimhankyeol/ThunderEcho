@@ -12,13 +12,13 @@
 <body>
 	<%@ include file="../top.jsp" %>
 	<!-- 이미지 섹션 -->
-	<section>
+	<section style="background:url(/img/intro.jpg) center center; height:500px;">
 		<div>
 			<!-- 이미지 들어가야함 -->
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 text-center"><!-- class에 text-white 적용 -->
+				<div style="color:#ffffff;"class="col-lg-12 text-center"><!-- class에 text-white 적용 -->
 					<h3>
 						For the health and well-being of all human beings
 					</h3>
@@ -65,26 +65,30 @@
 							</ul>
 						</span>
 					</div>
-					<h4 style="padding-top:20px; color: green;">
+					<h4 style="padding-bottom: 10%; padding-top:20px; color: green;">
 						사업 영역
 					</h4>
-					<div class="row text-center">
+					<div style="padding-bottom: 10%;" class="row text-center">
 						<span class="col-md-6">
-							<strong>공기살균탈취시스템</strong>
+							<strong style="display: block; padding-bottom: 10%;">공기살균탈취시스템</strong>
+							<img src="/img/intro_1.png">
 							<!-- <img> -->
 						</span>
 						<span class="col-md-6">
-							<strong>친환경 안전 농수축산</strong>
+							<strong style="display: block; padding-bottom: 10%;">친환경 안전 농수축산</strong>
+							<img src="/img/intro_2.png">
 							<!-- <img> -->
 						</span>
 					</div>
-					<div class="row text-center">
+					<div style="padding-bottom: 10%;" class="row text-center">
 						<span class="col-md-6">
-							<strong>대기 및 수질 환경</strong>
+							<strong style="display: block; padding-bottom: 10%; ">대기 및 수질 환경</strong>
+							<img src="/img/intro_3.png">
 							<!-- <img> -->
 						</span>
 						<span class="col-md-6">
-							<strong>주방환경 개선</strong>
+							<strong style="display: block;padding-bottom: 10%; ">주방환경 개선</strong>
+							<img src="/img/intro_4.png">
 							<!-- <img> -->
 						</span>
 					</div>

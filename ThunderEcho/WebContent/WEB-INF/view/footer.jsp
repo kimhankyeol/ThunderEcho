@@ -73,7 +73,7 @@
                 <li> <a href="#">Checkoutsasdqwe</a></li>
               </ul>
             </div> -->
-            <div class="newsletter col-lg-6" >
+            <div class="newsletter col-lg-6">
               <h5 class="text-uppercase">고객 콜센터</h5>
               <p> 1588 - 1588.</p>
               <ul class="list-unstyled">
