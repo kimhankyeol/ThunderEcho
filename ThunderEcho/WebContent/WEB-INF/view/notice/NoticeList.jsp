@@ -1,83 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page import="poly.util.CmmUtil" %>
-<%@ page import="poly.dto.NoticeDTO" %>
-<%@ page import="java.util.List"%>   
-<%@ page import="java.util.ArrayList"%> 
-<%@ page import="java.util.HashMap"%>    
-<%
-session.setAttribute("SESSION_USER_ID", "USER01"); //¼¼¼Ç °­Á¦ Àû¿ë, ·Î±×ÀÎµÈ »óÅÂ·Î º¸¿©ÁÖ±â À§ÇÔ
-
-List<NoticeDTO> rList =	(List<NoticeDTO>)request.getAttribute("rList");
-
-//°Ô½ÃÆÇ Á¶È¸ °á°ú º¸¿©ÁÖ±â
-if (rList==null){
-	rList = new ArrayList<NoticeDTO>();
-	
-}
-
-%>        
+<%@page import="poly.dto.NoticeDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% List<NoticeDTO> nList = (List<NoticeDTO>)request.getAttribute("nList"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°øÁö ¸®½ºÆ®</title>
-<script type="text/javascript">
-
-//»ó¼¼º¸±â ÀÌµ¿
-function doDetail(seq){
-	location.href="/notice/NoticeInfo.do?nSeq="+ seq;
-}
-
-</script>	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<%@ include file="/WEB-INF/view/topCssJs.jsp" %>
 </head>
 <body>
-<h2>°øÁö»çÇ×</h2>
-<hr/>
-<br/>
-
-<table border="1" width="600px">
+<%@ include file="/WEB-INF/view/top.jsp" %>
+<table>
 <tr>
-	<td width="100" align="center">¼ø¹ø</td>
-	<td width="200" align="center">Á¦¸ñ</td>
-	<td width="100" align="center">Á¶È¸¼ö</td>
-	<td width="100" align="center">µî·ÏÀÚ</td>
-	<td width="100" align="center">µî·ÏÀÏ</td>
+<td>ê²Œì‹œíŒ ë²ˆí˜¸</td>
+<td>ê²Œì‹œíŒ ì œëª©</td>
+<td>ê²Œì‹œíŒ ì‘ì„±ì</td>
+<td>ì‘ì„±ì¼</td>
 </tr>
-<%
-for (int i=0;i<rList.size();i++){
-	NoticeDTO rDTO = rList.get(i);
-
-	if (rDTO==null){
-		rDTO = new NoticeDTO();
-	}
-	
-%>
+<%for (int i=0 ; i<nList.size(); i++){ %>
 <tr>
-	<td align="center">
-	<%
-	//°øÁö±ÛÀÌ¶ó¸é, [°øÁö]Ç¥½Ã 
-	if (CmmUtil.nvl(rDTO.getNotice_yn()).equals("1")){
-		out.print("<b>[°øÁö]</b>");
-		
-	//°øÁö±ÛÀÌ ¾Æ´Ï¶ó¸é, ±Û¹øÈ£ º¸¿©ÁÖ±â 		
-	}else{
-		out.print(CmmUtil.nvl(rDTO.getNotice_seq()));
-			
-	}
-	%></td>
-	<td align="center">
-		<a href="javascript:doDetail('<%=CmmUtil.nvl(rDTO.getNotice_seq())%>');">
-		<%=CmmUtil.nvl(rDTO.getTitle()) %></a>
-	</td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getRead_cnt()) %></td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getUser_name()) %></td>
-	<td align="center"><%=CmmUtil.nvl(rDTO.getReg_dt()) %></td>
+<td><%=nList.get(i).getNoticeNo()%></td>
+<td><a href="/noticeDetail.do?noticeNo=<%=nList.get(i).getNoticeNo()%>"><%=nList.get(i).getNoticeTitle()%></a></td>
+<td>ê´€ë¦¬ì</td>
+<td><%=nList.get(i).getRegDate()%></td>
 </tr>
-<%
-}
-%>
+<%} %>
 </table>
-<a href="/notice/NoticeReg.do">[±Û¾²±â]</a>
+
+<%@ include file="/WEB-INF/view/footer.jsp" %>
+<%@ include file="/WEB-INF/view/bottomJs.jsp" %>
 </body>
 </html>
