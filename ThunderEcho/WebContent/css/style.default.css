@@ -1,3 +1,36 @@
+/* main font size change start */
+@media screen and (max-width:360px){
+	.main-hfs {
+		font-size: 2.0rem;
+	}
+	.main-pfs{
+		font-size: 0.90rem;
+	}
+	
+}
+
+@media screen and (min-width:361px) and (max-width:414px){
+	.main-hfs {
+		font-size: 2.5rem;
+	}
+	.main-pfs{
+		font-size: 1.0rem;
+	}
+	
+}
+
+@media screen and (min-width:415px){
+	.main-hfs {
+		font-size: 3.5rem;
+	}
+	.main-pfs{
+		font-size: 1.25rem;
+		font-weight:300;
+	}
+	
+}
+/* main font size change  end*/
+
 a, span, i, small {
 	display: inline-block;
 	text-decoration: none
@@ -1659,7 +1692,7 @@ footer.main-footer ul {
 footer.main-footer .services-block {
 	background: #171717;
 	color: #fff;
-	padding: 50px 0
+	padding: 50px 0;
 }
 
 footer.main-footer .services-block div[class*='col-'] {
