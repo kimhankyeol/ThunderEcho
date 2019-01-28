@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-<!-- <style>
-        #zz {
-        height:-webkit-fill-available;
-        background-color:blue;
-        }
-        </style> -->
-    <meta charset="utf-8">
+<style>
+.main-height {
+	height: 100%
+}
+</style>
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Hub - Bootstrap 4 Ecommerce Template</title>
     <meta name="description" content="">
@@ -21,7 +20,7 @@
     <section class="hero hero-home no-padding">
       <!-- Hero Slider-->
       <div class="owl-carousel owl-theme hero-slider">
-        <div style="background: url(/img/mainTest.png); background-position: center;" class="item d-flex align-items-center has-pattern">
+        <div style="background: url(/img/mainTest.png); background-position: center; height:1000px;" class="item d-flex align-items-center main-height">
           <div class="container">
             <div class="row">
               <div class="col-lg-6">
@@ -37,7 +36,7 @@
           </div>
         </div>
         
-        <div id="zz"style="background: url(/img/mainTest2.jpg); background-position: center;" class="item d-flex align-items-center">
+        <div style="background: url(/img/mainTest2.jpg); background-position: center; height:1000px;" class="item d-flex align-items-center main-height">
           <div class="container">
             <div class="row">
               <div class="col-lg-6 text-white">
@@ -47,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div style="background: url(/img/mainTest3.jpg); background-position: center;" class="item d-flex align-items-center">
+        <div style="background: url(/img/mainTest3.jpg); background-position: center; height:1000px;" class="item d-flex align-items-center main-height">
           <div class="container">
             <div class="row">
               <div class="col-lg-6 text-white">
