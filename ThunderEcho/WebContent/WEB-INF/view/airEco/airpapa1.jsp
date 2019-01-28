@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -15,9 +15,10 @@
 	 <section style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/divider-bg.jpg);" class="divider">
         <div class="row">
           <div class="col-lg-6">
-            <p>Old Collection                  </p>
+            <p>상품 고유번호</p>
             <h2 class="h1 text-uppercase no-margin">상품정보</h2>
-            <p>100,000</p><a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
+            <p>100,000원</p>
+            <a href="#" class="btn btn-template wide shop-now">상품 간략 설명<i class="icon-bag"></i></a>
           </div>
         </div>
     </section>
@@ -41,11 +42,12 @@
 			  
 			  <!-- 제품상세 -->
 			    <div role="tabpanel" class="tab-pane active" id="home">
-				    	<div class="container">
+				    	<div class="container" style="padding:50px 0px">
 					    	<h3>제품소개</h3>
 				    	</div>
-					  <section style="background:url(/img/airpapa1.jpg) center center;">
-						<div class="container">
+				    	<div>
+					  <section style="background:url(/img/airpapa1.jpg) center center; height:500px;">
+						<div class="container" style="padding:inherit;">
 							<div class="row">
 								<div style="color:#ffffff;"class="col-lg-12 text-center"><!-- class에 text-white 적용 -->
 									<h5>
@@ -61,40 +63,39 @@
 							</div>
 						</div>
 					</section>
-					
+					</div>
 					<!-- 제품 효과 -->
-					<section>
-						<h5 style="text-align:center; display: block;">
+					<section  class="container" style="background-color: #fffffd;">
+						<h4 style="text-align:center; display: block; margin:50px 0px;">
 							오염공기와 반응하여 배합된 혼합 광물질과의 융합코어 기술에 의하여 수산기와 다량의 산소이온을 발생하고, 탁월한 공기정화 기능, 초미세먼지를 중화시키고 제거
-						</h5>
+						</h4>
 						<div class="row">
 							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 300%;">1</strong>
+								<strong style="font-size: 600%;">1</strong>
 							</div>
 							<div class="col-md-9" style="text-align:left;">
 								<b>새집, 헌집 증후군 물질 제거</b>
 								<p>암모니아, 폼알데히드, 자일렌, 톨루엔 등 유해물질을 제거하여 증상 완화</p>
 							</div>
 							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 300%;">2</strong>
+								<strong style="font-size: 600%;">2</strong>
 							</div>
 							<div class="col-md-9" style="text-align:left;">
 								<b>바이러스 및 병원성 세균 살균</b>
 								<p>슈퍼박테리아, 폐렴균, 대장균, 황색포도상구균, 녹농균, 곰팡이균 등 99.9% 살균</p>
 							</div>
 							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 300%;">3</strong>
+								<strong style="font-size: 600%;">3</strong>
 							</div>
 							<div class="col-md-9" style="text-align:left;">
 								<b>다량의 음이온(산소이온) 발생</b>
 								<p>초미세먼지제거, 저항력 증가, 혈액정화 작용</p>
 							</div>
 						</div>
-						
-							<div class="row" style="background-color: grey;">
-								<div class="col-lg-12">
-									<h3>주요 적용/설치 장소</h3>
-								</div>
+						<h4 style="text-align:left; display: block; margin:50px 0px;">
+							주요 적용/설치 장소
+						</h4>
+							<div class="row">
 								<div class="col-lg-12 row">
 									<span class="col-lg-6" style="padding-left:15%; padding-right:5%; ">
 										<b>공동생활 / 노약자</b>
