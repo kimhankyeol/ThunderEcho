@@ -21,7 +21,5 @@ public interface NoticeMapper {
 	//공지사항 수정
 	public int updateNotice(NoticeDTO nDTO) throws Exception;
 	
-	
-	
-	
+
 }

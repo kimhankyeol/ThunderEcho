@@ -36,4 +36,5 @@ regDate=now()
 WHERE 
 noticeNo=#{noticeNo}
 </update>
+
 </mapper>

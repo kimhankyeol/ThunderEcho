@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -49,11 +50,16 @@ public class NoticeController {
    
 	//ckeditor 공지사항 리스트
     @RequestMapping(value="/noticeList")
-	public String noticeList(Model model) throws Exception{
+	public String noticeList(HttpServletRequest request,Model model) throws Exception{
+		
+    	log.info(this.getClass().getName() + ".NoticeList start!");
+
 		
 		List<NoticeDTO> nList = new ArrayList(); 
-		nList = noticeService.getNoticeList();
+	
 		
+		nList = noticeService.getNoticeList();
+	
 		model.addAttribute("nList",nList);
 		return "/notice/noticeList";
 	}
