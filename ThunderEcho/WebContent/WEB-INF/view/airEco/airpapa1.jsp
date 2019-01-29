@@ -68,26 +68,32 @@
 							오염공기와 반응하여 배합된 혼합 광물질과의 융합코어 기술에 의하여 수산기와 다량의 산소이온을 발생하고, 탁월한 공기정화 기능, 초미세먼지를 중화시키고 제거
 						</h4>
 						<div class="row">
-							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 600%;">1</strong>
+							<div style="width:100%">
+								<span  style="text-align:center; width:20%">
+									<strong style="font-size: 600%;">1</strong>
+								</span>
+								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
+									<b>새집, 헌집 증후군 물질 제거</b>
+									<p>암모니아, 폼알데히드, 자일렌, 톨루엔 등 유해물질을 제거하여 증상 완화</p>
+								</span>
 							</div>
-							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
-								<b>새집, 헌집 증후군 물질 제거</b>
-								<p>암모니아, 폼알데히드, 자일렌, 톨루엔 등 유해물질을 제거하여 증상 완화</p>
+							<div style="width:100%">
+								<span style="text-align:center; width:20%">
+									<strong style="font-size: 600%;">2</strong>
+								</span>
+								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
+									<b>바이러스 및 병원성 세균 살균</b>
+									<p>슈퍼박테리아, 폐렴균, 대장균, 황색포도상구균, 녹농균, 곰팡이균 등 99.9% 살균</p>
+								</span>
 							</div>
-							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 600%;">2</strong>
-							</div>
-							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
-								<b>바이러스 및 병원성 세균 살균</b>
-								<p>슈퍼박테리아, 폐렴균, 대장균, 황색포도상구균, 녹농균, 곰팡이균 등 99.9% 살균</p>
-							</div>
-							<div class="col-md-3" style="text-align:center;">
-								<strong style="font-size: 600%;">3</strong>
-							</div>
-							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
-								<b>다량의 음이온(산소이온) 발생</b>
-								<p>초미세먼지제거, 저항력 증가, 혈액정화 작용</p>
+							<div style="width:100%">
+								<span  style="text-align:center; width:20%">
+									<strong style="font-size: 600%;">3</strong>
+								</span>
+								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
+									<b>다량의 음이온(산소이온) 발생</b>
+									<p>초미세먼지제거, 저항력 증가, 혈액정화 작용</p>
+								</span>
 							</div>
 						</div>
 						<h4 style="text-align:left; display: block; margin:50px 0px;">
@@ -126,6 +132,10 @@
 								</div>
 							</div>
 					</section>
+						<div style="text-align:center; background-color:#bfdaeb">
+						<img src="/img/Nitrogen_oxide.png"style="height:100%; width:100%;"/>
+						<img src="/img/Plasma.jpg"style="height:100%; width:100%;"/>
+						</div>
 			    </div>
 			    
 			    <!-- 제품스펙 -->
