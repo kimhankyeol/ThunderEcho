@@ -36,7 +36,7 @@ noticeNo=#{noticeNo}
 
 <!-- 공지사항 페이징 -->
  <select id="getNoticeList" parameterType="map" resultType="NoticeDTO">
-	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate FROM NOTICE ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
 </select> 
 
 <select id="getNoticeListTotalCount" resultType="java.lang.Integer">
@@ -55,7 +55,7 @@ SELECT * FROM USERADMIN WHERE userId=#{id} AND userPassword=#{password}
 
 <!-- 내용 검색 페이징 -->
 <select id="getNoticeSearchList" parameterType="map" resultType="NoticeDTO">
-	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate FROM NOTICE WHERE noticeContent like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE WHERE noticeContent like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
 </select>
 <!-- 내용 검색 총 개수 -->
 <select id="getNoticeSearchTotalCount" parameterType="map" resultType="java.lang.Integer">
@@ -63,7 +63,7 @@ SELECT * FROM USERADMIN WHERE userId=#{id} AND userPassword=#{password}
 </select>
  <!-- 제목 검색 페이징 -->
 <select id="getNoticeSearchTitleList" parameterType="map" resultType="NoticeDTO">
-	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate FROM NOTICE WHERE noticeTitle like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE WHERE noticeTitle like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
 </select>
 <!--제목 검색 총개수 -->
 <select id="getNoticeListSearchTitleCount" parameterType="map" resultType="java.lang.Integer">
