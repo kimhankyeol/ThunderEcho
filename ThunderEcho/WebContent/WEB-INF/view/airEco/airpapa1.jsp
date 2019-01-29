@@ -131,11 +131,11 @@
 									</span>
 								</div>
 							</div>
+							<div style="text-align:center; background-color:#bfdaeb">
+							<img src="/img/Nitrogen_oxide.png"style="height:auto; width:100%;"/>
+							<img src="/img/Plasma.jpg"style="height:auto; width:100%;"/>
+							</div>
 					</section>
-						<div style="text-align:center; background-color:#bfdaeb">
-						<img src="/img/Nitrogen_oxide.png"style="height:100%; width:100%;"/>
-						<img src="/img/Plasma.jpg"style="height:100%; width:100%;"/>
-						</div>
 			    </div>
 			    
 			    <!-- 제품스펙 -->
