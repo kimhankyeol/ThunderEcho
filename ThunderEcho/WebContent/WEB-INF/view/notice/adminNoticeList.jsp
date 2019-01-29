@@ -18,7 +18,7 @@
 <%@ include file="/WEB-INF/view/topCssJs.jsp" %>
 <!-- 나중에 css 추가  -->
 <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/noticeList.css">
+<link rel="stylesheet" href="/css/adminNoticeList.css">
 
 <script>
 function noticeDetail(i){
@@ -27,14 +27,14 @@ function noticeDetail(i){
 //검색안함
 function page(i){
 	var pagenum = i;
-	location.href="/noticeList.do?pagenum="+pagenum+"&contentnum=10";
+	location.href="/adminNoticeList.do?pagenum="+pagenum+"&contentnum=10";
 }
 //검색함
-function page1(i){
-	var pagenum = i;
-	var searchWd="<%=pDTO.getSearchWord()%>";
+	function page1(i) {
+		var pagenum = i;
+		var searchWd = "<%=pDTO.getSearchWord()%>";
 	var selBox="<%=pDTO.getSelBox()%>";
-	location.href="/noticeList.do?pagenum="+pagenum+"&contentnum=10&searchWord="+searchWd+"&selBox="+selBox;
+	location.href="/adminNoticeList.do?pagenum="+pagenum+"&contentnum=10&searchWord="+searchWd+"&selBox="+selBox;
 }
 </script>
 
@@ -58,29 +58,37 @@ function page1(i){
 	<div class="width-100">
 		<div class="searchWrap">
 			<div class="searchInner">
-				<form id="searBox">
-					<select class="selBox" name="selBox">
-						<option value="noticeTitle" selected="selected">제목</option>
-						<option value="noticeContent">내용</option>
-					</select>
-					<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
-					<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
-					<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+					<form id="searBox">
+						<select class="selBox" name="selBox">
+							<option value="noticeTitle" selected="selected">제목</option>
+							<option value="noticeContent">내용</option>
+						</select>
+						<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
+						<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
+						<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+					</form>
+				</div>
+				<div class="checkdel">
 					<input type="button" id="findNotice" class="btn btn-success" value="검색">
-				</form>
-			</div>
+					<input type="button" onclick="javascript:noticeDel()" style="float:right" class="btn btn-danger" value="삭제" />
+					<label for="checkAll" class="btn btn-warning" style="float:right">전체 선택</label>
+					<input type="checkbox" id="checkAll" style="display:none" />
+					<input type="button" onclick="javascript:noticeInsert()" style="float:right" class="btn btn-info" value="등록" />
+				</div>
 		</div>
 		
-		<div class="noticeStyle1">
-			<div><b><a style="color:black;text-align: left">번호</a></b></div>
-			<div><b><a style="color:black;text-align: left">제목</a></b></div>
+		<div class="noticeStyle3">
+			<div><b><a style="color:black;">체크</a></b></div>
+			<div><b><a style="color:black;">번호</a></b></div>
+			<div><b><a style="color:black;">제목</a></b></div>
 			<div><b><a style="color:black">작성자</a></b></div>
 			<div><b><a style="color:black">작성일</a></b></div>
 			<div><b><a style="color:black">조회수</a></b></div>
 		</div>
 	
 	<%for (int i=0 ; i<nList.size(); i++){ %>
-			<div class="noticeStyle2">
+			<div class="noticeStyle4">
+				<div><b><input type="checkbox" name="check" value="<%=nList.get(i).getNoticeNo()%>"/></b></div>
 				<div><b><%=nList.get(i).getNoticeNo()%></b></div>
 				<div onclick="javascript:noticeDetail('<%=nList.get(i).getNoticeNo()%>')"><b><%=nList.get(i).getNoticeTitle()%></b></div>
 				<div>관리자</div>
@@ -124,12 +132,12 @@ $(function(){
 			$(this).addClass("on")
 		}
 	}) 
+	
+	
 })
-
+//검색 페이징 처리 구문
 $(function(){
 	$('#findNotice').click(function(){
-	
-	
 		var searchWord=$('#searchWord').val();
 		var selBox=$('select[name=selBox] option:selected').val();
 		if(searchWord==""){
@@ -139,13 +147,43 @@ $(function(){
 		if(String(<%=pDTO.getPagenum()+1%>)=="1"){
 			$('#searBox').submit();
 		}else{
-			location.href="/noticeList.do?pagenum=1&contentnum=10&searchWord="+searchWord+"&selBox="+selBox;
+			location.href="/adminNoticeList.do?pagenum=1&contentnum=10&searchWord="+searchWord+"&selBox="+selBox;
 		}
 	})
 	
 })
-/*  */
-
+// 체크박스 선택 해제
+$(function(){
+    //최상단 체크박스 클릭
+    $("#checkAll").click(function(){
+        //클릭되었으면
+        if($("#checkAll").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=check]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=check]").prop("checked",false);
+        }
+    })
+})
+//선택 삭제
+//발표 삭제
+function noticeDel(){
+	var noticeNoArr=[];
+	$('input[name=check]:checked').each(function(index){
+		noticeNoArr.push($(this).val());
+	})
+	
+	if($('input[name=check]').is(':checked')==false){
+		alert('삭제할 공지사항이 선택 되지 않았습니다.')
+	}else{
+		location.href="/notice/noticeDelete.do?noticeNoArr="+noticeNoArr;
+	}
+}
+function noticeInsert(){
+	location.href="/noticeInsertView.do"
+}
 </script>
 </body>
 </html>

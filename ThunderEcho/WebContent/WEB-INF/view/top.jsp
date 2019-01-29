@@ -55,7 +55,7 @@
               </li>
               <li class="nav-item dropdown"><a id="navbarInfoLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Information<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownInfoLink" class="dropdown-menu">
-                  <li><a href="/noticeList.do" class="dropdown-item">공지사항</a></li>
+                  <li><a href="/noticeList.do?pagenum=1&contentnum=10" class="dropdown-item">공지사항</a></li>
                    <li><a href="index.html" class="dropdown-item">1대1 문의</a></li>
                 </ul>
               </li>

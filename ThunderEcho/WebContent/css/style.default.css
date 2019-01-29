@@ -1,3 +1,10 @@
+/*푸터를 맞추기 위한 방안*/
+ html, body {
+
+    height: 100%;
+
+}
+
 /* main font size change start */
 @media screen and (max-width:360px){
 	.main-hfs {
@@ -1680,9 +1687,8 @@ section.brands .brand {
 section.brands .owl-dots {
 	margin-top: 25px !important
 }
-
 footer.main-footer {
-	background: #111
+	background: #111;
 }
 
 footer.main-footer ul {

@@ -1,6 +1,8 @@
+<%@page import="poly.util.CmmUtil"%>
 <%@page import="poly.dto.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String userName =CmmUtil.nvl((String)session.getAttribute("userName")); %>
 <%NoticeDTO nDTO = (NoticeDTO)request.getAttribute("nDTO"); %>
 <!DOCTYPE html>
 <html>
@@ -11,8 +13,11 @@
 function noticeUpdateView(){
 	location.href="/noticeUpdateView.do?noticeNo=<%=nDTO.getNoticeNo()%>";
 }
+function adminNoticeDetail(){
+	location.href="/adminNoticeList.do?pagenum=1&contentnum=10";
+}
 function noticeDetail(){
-	location.href="/noticeList.do";
+	location.href="/noticeList.do?pagenum=1&contentnum=10";
 }
 </script>
 <%@ include file="/WEB-INF/view/topCssJs.jsp" %>
@@ -21,7 +26,13 @@ function noticeDetail(){
  <%@ include file="/WEB-INF/view/top.jsp" %>
 <div>제목:<%=nDTO.getNoticeTitle() %></div>
 <div><%=nDTO.getNoticeContent() %></div>
-<div><button onclick="noticeUpdateView()">수정</button><button onclick="noticeDetail()">취소</button></div>
+<%
+if(userName.equals("관리자")){
+%>
+<div><button class="btn btn-success" onclick="noticeUpdateView()">수정</button><button class="btn btn-danger" onclick="adminNoticeDetail()">돌아가기</button></div>
+<%}else{ %>
+<button class="btn btn-danger" onclick="noticeDetail()">돌아가기</button>
+<%} %>
 <%@ include file="/WEB-INF/view/footer.jsp" %>
 <%@ include file="/WEB-INF/view/bottomJs.jsp" %>
 </body>
