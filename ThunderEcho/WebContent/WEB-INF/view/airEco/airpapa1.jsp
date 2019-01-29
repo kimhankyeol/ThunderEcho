@@ -63,7 +63,7 @@
 					</section>
 					</div>
 					<!-- 제품 효과 -->
-					<section  class="container" style="background-color: #fffffd;">
+					<section  class="container" style="background-color: #fffffd; padding:0px;">
 						<h4 style="text-align:center; display: block; margin:50px 0px;">
 							오염공기와 반응하여 배합된 혼합 광물질과의 융합코어 기술에 의하여 수산기와 다량의 산소이온을 발생하고, 탁월한 공기정화 기능, 초미세먼지를 중화시키고 제거
 						</h4>
