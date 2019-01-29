@@ -13,12 +13,12 @@
 	<%@ include file="../top.jsp" %>
 	<!-- 상품 섹션 -->
 	 <section style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/divider-bg.jpg);" class="divider">
-        <div class="row">
-          <div class="col-lg-6">
+        <div class="row" style="text-align:right;">
+          <div class="col-lg-6" style="max-width:100%;">
             <p>상품 고유번호</p>
             <h2 class="h1 text-uppercase no-margin">상품정보</h2>
             <p>100,000원</p>
-            <a href="#" class="btn btn-template wide shop-now">상품 간략 설명<i class="icon-bag"></i></a>
+            <a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
           </div>
         </div>
     </section>
@@ -28,14 +28,12 @@
 		<div>
 			<div role="tabpanel">
 				<div class="container">
-				
 				  <!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist" style="text-align:center;">
-				    <li role="presentation" class="active" style="width: 33%;"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">제품소개</a></li>
-				    <li role="presentation" style="width: 33%;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">제품스펙</a></li>
-				    <li role="presentation" style="width: 33%;"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">성능분석</a></li>
+				    <li role="presentation" class="active" style="width: 33%;"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h5>제품소개</h5></a></li>
+				    <li role="presentation" style="width: 33%;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h5>제품스펙<h5></a></li>
+				    <li role="presentation" style="width: 33%;"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><h5>성능분석</h5></a></li>
 				  </ul>
-				
 				</div>
 			  <!-- Tab panes -->
 			  <div class="tab-content">
@@ -73,21 +71,21 @@
 							<div class="col-md-3" style="text-align:center;">
 								<strong style="font-size: 600%;">1</strong>
 							</div>
-							<div class="col-md-9" style="text-align:left;">
+							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
 								<b>새집, 헌집 증후군 물질 제거</b>
 								<p>암모니아, 폼알데히드, 자일렌, 톨루엔 등 유해물질을 제거하여 증상 완화</p>
 							</div>
 							<div class="col-md-3" style="text-align:center;">
 								<strong style="font-size: 600%;">2</strong>
 							</div>
-							<div class="col-md-9" style="text-align:left;">
+							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
 								<b>바이러스 및 병원성 세균 살균</b>
 								<p>슈퍼박테리아, 폐렴균, 대장균, 황색포도상구균, 녹농균, 곰팡이균 등 99.9% 살균</p>
 							</div>
 							<div class="col-md-3" style="text-align:center;">
 								<strong style="font-size: 600%;">3</strong>
 							</div>
-							<div class="col-md-9" style="text-align:left;">
+							<div class="col-md-9" style="text-align:left; display: grid; align-items: center;">
 								<b>다량의 음이온(산소이온) 발생</b>
 								<p>초미세먼지제거, 저항력 증가, 혈액정화 작용</p>
 							</div>
@@ -97,10 +95,9 @@
 						</h4>
 							<div class="row">
 								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:15%; padding-right:5%; ">
-										<b>공동생활 / 노약자</b>
-										<p>요양원, 양로원, 유치원, 영유아/노약자 부양 주택 등</p>
-										<p>면역력이 약해, 보다 건강한 공기가 필요한 장소</p>
+									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
+										<h5>공동생활 / 노약자</h5>
+										<p>요양원, 양로원, 유치원, 영유아/노약자 부양 주택 등 면역력이 약해, 보다 건강한 공기가 필요한 장소</p>
 									</span>
 									<span class="col-lg-6">
 										<!-- <img> -->
@@ -108,10 +105,9 @@
 									</span>
 								</div>
 								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:15%; padding-right:5%; ">
-										<b>의료 / 산업</b>
-										<p>공기청정기로 해결되지 못하는 독소, 독성 물질 발생 또는,</p>
-										<p>병원균 제거가 필요한 장소</p>
+									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
+										<h5>의료 / 산업</h5>
+										<p>공기청정기로 해결되지 못하는 독소, 독성 물질 발생 또는, 병원균 제거가 필요한 장소</p>
 									</span>
 									<span class="col-lg-6">
 										<!-- <img> -->
@@ -119,10 +115,9 @@
 									</span>
 								</div>
 								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:15%; padding-right:5%; ">
-										<b>지하 / 주거 / 공공장소</b>
-										<p>각종 냄새로 인한 악취, 곰팡이 발생 구역의 냄새 또는,</p>
-										<p>쾌적한 실내공기 유지를 위한 장소</p>
+									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
+										<h5>지하 / 주거 / 공공장소</h5>
+										<p>각종 냄새로 인한 악취, 곰팡이 발생 구역의 냄새 또는, 쾌적한 실내공기 유지를 위한 장소</p>
 									</span>
 									<span class="col-lg-6">
 										<!-- <img> -->
@@ -135,7 +130,7 @@
 			    
 			    <!-- 제품스펙 -->
 			    <div role="tabpanel" class="tab-pane" id="profile">
-			   		 <div class="container">
+				    	<div class="container" style="padding:50px 0px">
 					    	<h3>제품스펙</h3>
 				    	</div>
 					  <section>
@@ -145,27 +140,27 @@
 								  <table class="table">
 								    <tbody>
 								    	<tr>
-								    		<td>면적</td>
+								    		<td><h5>면적</h5></td>
 								    		<td>82~115(25~35평)</td>
 								    	</tr>
 								    	<tr>
-								    		<td>모델번호</td>
+								    		<td><h5>모델번호</h5></td>
 								    		<td>airpapa(멸균기), SPR-190122</td>
 								    	</tr>
 								    	<tr>
-								    		<td>크기</td>
+								    		<td><h5>크기</h5></td>
 								    		<td>160mm*350mm*800mm</td>
 								    	</tr>
 								    	<tr>
-								    		<td>무게</td>
+								    		<td><h5>무게</h5></td>
 								    		<td>20kg</td>
 								    	</tr>
 								    	<tr>
-								    		<td>전력</td>
+								    		<td><h5>전력</h5></td>
 								    		<td>220V, 60Hz, 70wh</td>
 								    	</tr>
 								    	<tr>
-								    		<td>오존 레벨</td>
+								    		<td><h5>오존 레벨</h5></td>
 								    		<td>0.00ppm</td>
 								    	</tr>
 								    	
@@ -180,7 +175,7 @@
 			    
 			    <!-- 성적 -->
 			    <div role="tabpanel" class="tab-pane" id="messages">
-			  		  <div class="container">
+				    	<div class="container" style="padding:50px 0px">
 					    	<h3>성능분석</h3>
 				    	</div>
 				      <div class="main-block">
@@ -191,28 +186,28 @@
 				              <h5 class="text-uppercase">대장균</h5>
 				              <img src="/img/testCertficarion.png"/>
 				              <ul class="list-unstyled">
-				                <li>kcl 시험성적서</li>
+				                <li>KCL 시험성적서</li>
 				              </ul>
 				            </div>
 				            <div class="site-links col-lg-4 col-md-6">
 				              <h5 class="text-uppercase">살구균</h5>
 				              <img src="/img/testCertficarion.png"/>
 				              <ul class="list-unstyled">
-				                <li>kcl 시험성적서</li>
+				                <li>KCL 시험성적서</li>
 				              </ul>
 				            </div>
 				             <div class="site-links col-lg-4 col-md-6">
 				              <h5 class="text-uppercase">황생균</h5>
 				              <img src="/img/testCertficarion.png"/>
 				              <ul class="list-unstyled">
-				                <li>kcl 시험성적서</li>
+				                <li>KCL 시험성적서</li>
 				              </ul>
 				            </div>
 				            <div class="site-links col-lg-4 col-md-6">
 				              <h5 class="text-uppercase">황색포도구상균</h5>
 				              <img src="/img/testCertficarion.png"/>
 				              <ul class="list-unstyled">
-				                <li>kcl 시험성적서</li>
+				                <li>KCL 시험성적서</li>
 				              </ul>
 				            </div>
 				           
