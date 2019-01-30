@@ -21,11 +21,39 @@ function noticeDetail(){
 }
 </script>
 <%@ include file="/WEB-INF/view/topCssJs.jsp" %>
+<link rel="stylesheet" href="/css/noticeList.css">
 </head>
 <body>
  <%@ include file="/WEB-INF/view/top.jsp" %>
+ <div class="subTitleBar">
+	<div class="subTitleIn">
+		<h2><img src="/img/notice.jpg" alt="공지사항"></h2>
+			<ul class="smap">
+                 <li><a style="color:black;" href="/main.do"><i class="fa fa-home fa-fw"></i></a></li>
+                 <li><i class="fa fa-chevron-right fa-fw"></i></li>
+                 <li class="en"><i class="fa fa-info-circle fa-fw"></i>INFORMATION</li>
+                 <li><i class="fa fa-chevron-right fa-fw"></i></li>
+                 <li><a style="color:black" href="/noticeList.do?pagenum=1&contentnum=10"><i class="fa fa-list-alt fa-fw"></i> 공지사항</a></li>
+       		</ul>
+	</div>
+</div>
+<div class="container" style="min-height: 80%;">
+	<div class="width-100">
+		<div class="searchWrap">
+			<div style="padding-top: 10px;margin-bottom: 10px;">
+				 <span style="font-size: 1.75rem; font-family: Noto Sans Medium"><%=nDTO.getNoticeTitle()%></span>
+				  <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px" ><%=nDTO.getReadCount() %></span>	
+				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px">조회수<i class="fa fa-hand-pointer-o fa-fw"></i></span>
+				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-right:10px; padding-top: 10px" ><%=nDTO.getRegDate() %></span>	
+				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px">등록일<i class="fa fa-registered fa-fw"></i></span>
+					
+			</div>
+		</div>
+	</div>
+</div>
+
 <div>제목:<%=nDTO.getNoticeTitle() %></div>
-<div><%=nDTO.getNoticeContent() %></div>
+<div class="container" style="min-height:80%"><%=nDTO.getNoticeContent() %></div>
 <%
 if(userName.equals("관리자")){
 %>
