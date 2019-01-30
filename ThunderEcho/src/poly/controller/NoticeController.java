@@ -44,9 +44,14 @@ import poly.util.StringUtil;
 public class NoticeController {
 	@Resource(name="NoticeService")
 	private INoticeService noticeService; 
-	
-	
 	private Logger log = Logger.getLogger(this.getClass());
+
+	
+	// 1:1 문의
+	@RequestMapping(value="notice/counsel")
+	public String inquire() throws Exception {
+		return "/notice/counsel";
+	}
 	
 	////관리자 ////////////////////////////////////
 	//관리자 로그인창
