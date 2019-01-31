@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.connector.Request;
 import org.apache.commons.collections.CollectionUtils;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import poly.dto.NoticeDTO;
+import poly.dto.PagingDTO;
 import poly.service.INoticeService;
 import poly.util.CmmUtil;
 import poly.util.StringUtil;
@@ -41,20 +44,341 @@ import poly.util.StringUtil;
 public class NoticeController {
 	@Resource(name="NoticeService")
 	private INoticeService noticeService; 
-	
-	
 	private Logger log = Logger.getLogger(this.getClass());
 
+	
+	// 1:1 문의
+	@RequestMapping(value="notice/counsel")
+	public String inquire() throws Exception {
+		return "/notice/counsel";
+	}
+	
+	////관리자 ////////////////////////////////////
+	//관리자 로그인창
+	@RequestMapping(value="/thunderAdmin")
+	public String thunderAdmin() throws Exception {
+		
+		return "/notice/adminLogin";
+		
+	}
+	//관리자 로그인
+	@RequestMapping(value="/thunderAdminLogin",method=RequestMethod.POST)
+	public String thunderAdminLogin(HttpServletRequest req,NoticeDTO nDTO,HttpSession session,Model model) throws Exception {
+		String id = req.getParameter("userId");
+		String password = req.getParameter("userPassword");
+		
+		nDTO.setId(id);
+		nDTO.setPassword(password);
+		
+		nDTO = noticeService.getAdminLogin(nDTO);
+		log.info(nDTO);
+		
+		if (nDTO!=null) {
+			session.setAttribute("userName",nDTO.getUserName());
+			model.addAttribute("msg",nDTO.getUserName()+"님 환영합니다.");
+			model.addAttribute("url","/adminNoticeList.do?pagenum=1&contentnum=10");
+		}else {
+			model.addAttribute("msg","다시 로그인 해주세요");
+			model.addAttribute("url","/thunderAdmin.do");
+		}
+	
+		
+		return "/alert";
+		
+	}
+	//관리자 로그아웃
+		@RequestMapping(value="/logout")
+		public String logout(HttpSession session,Model model) throws Exception {
+				session.invalidate();
+			
+				model.addAttribute("msg","로그아웃 하셨습니다.");
+				model.addAttribute("url","/main.do");
+		
+		
+			
+			return "/alert";
+			
+		}
+	//관리자 공지사항 리스트
+		@RequestMapping(value="/adminNoticeList")
+		public String adminNoticeList(HttpServletRequest request,Model model) throws Exception{
+			
+			log.info(this.getClass() + ".NoticeList start!");
+	    	String searchWord = CmmUtil.nvl(request.getParameter("searchWord"));
+	    	String selBox = CmmUtil.nvl(request.getParameter("selBox"));
+	    	log.info("SearchWord"+searchWord);
+	    	if(searchWord.equals("")&&selBox.equals("")) {
+	    		PagingDTO paging = new PagingDTO();
+	        	int pagenum=Integer.parseInt(request.getParameter("pagenum"));
+	        	int contentnum = Integer.parseInt(request.getParameter("contentnum"));
+	    		int totalCount = noticeService.getNoticeListTotalCount();
+	    		paging.setTotalcount(totalCount);//전체 게시글 지정
+	    		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+	    		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+	    		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+	    		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+	    		log.info("Last block:"+paging.getTotalcount());
+	    		
+	    		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+	    		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+	    		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+	    		//
+	    		
+	    		List<NoticeDTO> nList = new ArrayList(); 
+	    		int i = paging.getPagenum()*10;
+	    		int j = paging.getContentnum();
+	    		HashMap<String, Integer> hMap = new HashMap<>();
+	    		hMap.put("pagenum",i);
+	    		hMap.put("contentnum", j);
+	    		
+	    		nList = noticeService.getNoticeList(hMap);
+	    		// 페이징 정보 전달.
+	    		
+	    		model.addAttribute("nList",nList);
+	    		model.addAttribute("paging",paging);
+	    		nList=null;
+	    		paging=null;
+	    		log.info(this.getClass() + ".NoticeList end!");
+	    	}else {
+	    		log.info("이거 실행하고 있어");
+	    		PagingDTO paging = new PagingDTO();
+	    		//검색하기 위한 변수를 NoticeDTO에 선언하고 사용
+	    	
+	    		paging.setSearchWord(searchWord);
+	    		paging.setSelBox(selBox);
+	    		searchWord=paging.getSearchWord().toString();
+	    		HashMap<String, Object> hMap = new HashMap<>();
+	    		hMap.put("searchWord", searchWord);
+	    		
+	        	int pagenum=Integer.parseInt(request.getParameter("pagenum"));
+	        	int contentnum = Integer.parseInt(request.getParameter("contentnum"));
+	        	if(selBox.toString().equals("noticeContent")) {
+	        		log.info("이거 실행하고 있어 내용");
+	        		int totalCount = noticeService.getNoticeListSearchTotalCount(hMap);
+	        		log.info("내용 검색  개수 :"+totalCount);
+	        		paging.setTotalcount(totalCount);
+	        		//전체 게시글 지정
+	        		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+	        		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+	        		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+	        		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+	        		
+	        		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+	        		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+	        		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+	        	
+	        		
+	        		List<NoticeDTO> nList = new ArrayList(); 
+	        		int i = paging.getPagenum()*10;
+	        		int j = paging.getContentnum();
+	        	
+	        		hMap.put("pagenum",i);
+	        		hMap.put("contentnum", j);
+	        		
+	        		nList = noticeService.getNoticeSearchList(hMap);
+	        		// 페이징 정보 전달.
+	        		
+	        		model.addAttribute("nList",nList);
+	        		model.addAttribute("paging",paging);
+	        		log.info(this.getClass() + ".NoticeList end!");
+	        	}else if(selBox.toString().equals("noticeTitle")) {
+	        		int totalCount = noticeService.getNoticeListSearchTitleCount(hMap);
+	        		log.info("제목 검색  개수 :"+totalCount);
+	        		paging.setTotalcount(totalCount);
+	        		//전체 게시글 지정
+	        		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+	        		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+	        		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+	        		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+	        		
+	        		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+	        		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+	        		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+	        	
+	        		
+	        		List<NoticeDTO> nList = new ArrayList(); 
+	        		int i = paging.getPagenum()*10;
+	        		int j = paging.getContentnum();
+	        	
+	        		hMap.put("pagenum",i);
+	        		hMap.put("contentnum", j);
+	        		
+	        		nList = noticeService.getNoticeSearchTitleList(hMap);
+	        		// 페이징 정보 전달.
+	        		
+	        		model.addAttribute("nList",nList);
+	        		model.addAttribute("paging",paging);
+	        		log.info(this.getClass() + ".NoticeList end!");
+	        	}
+	    	}
+	    	
+			return "/notice/adminNoticeList";
+		}
+		
+	//공지사항 삭제
+	@RequestMapping(value="/notice/noticeDelete")
+	public String deleteNotice(@RequestParam(value="noticeNoArr",required=true) List<String> noticeNoArr, HttpServletRequest req, HttpSession session,Model model) throws Exception{
+		NoticeDTO nDTO = new NoticeDTO();
+		String noticeNo="";
+		//서버 파일 위치
+		String newFilePath=req.getSession().getServletContext().getRealPath("/noticeUpdImg/");
+		List<String> imgList = new ArrayList<>();
+		String compFile="";
+		int result=0;
+		String msg="";
+		String url="";
+		for(int i =0 ;i<noticeNoArr.size();i++) {
+			nDTO.setNoticeNo(noticeNoArr.get(i).toString());
+			noticeNo=nDTO.getNoticeNo();
+			//파일삭제 하기 위해 조회
+			nDTO = noticeService.getNoticeDetail(nDTO);
+			imgList = StringUtil.getDelImgSrc(nDTO.getNoticeContent());
+			
+			if(imgList.get(0).toString().equals("notValue")) {
+				log.info("파일없음");
+				result = noticeService.deleteNotice(nDTO);
+			}else {
+				Iterator i1 = imgList.iterator();
+				while(i1.hasNext()) {
+					compFile=i1.next().toString().replace("http://localhost:8080/noticeUpdImg/", "");
+					File file = new File(newFilePath+compFile);
+					file.delete();
+					result = noticeService.deleteNotice(nDTO);
+					log.info("지워졌나2"+result);
+				}
+				
+			}
+		}
+		
+		if(result==1) {
+			model.addAttribute("msg","성공적으로 삭제했습니다.");
+			model.addAttribute("url","/adminNoticeList.do?pagenum=1&contentnum=10");
+		}else {
+			model.addAttribute("msg","삭제 실패");
+			model.addAttribute("url","/adminNoticeList.do?pagenum=1&contentnum=10");
+		}
+		
+		return "/alert";
+		
+	}
+
+		
     //////////////////////////////////////////////////////////////////////////////////////
-   
+	
+		///////////////////////////////////////////////////////////
 	//ckeditor 공지사항 리스트
     @RequestMapping(value="/noticeList")
-	public String noticeList(Model model) throws Exception{
-		
-		List<NoticeDTO> nList = new ArrayList(); 
-		nList = noticeService.getNoticeList();
-		
-		model.addAttribute("nList",nList);
+	public String noticeList(HttpServletRequest request,Model model) throws Exception{
+    	log.info(this.getClass() + ".NoticeList start!");
+    	String searchWord = CmmUtil.nvl(request.getParameter("searchWord"));
+    	String selBox = CmmUtil.nvl(request.getParameter("selBox"));
+    	log.info("SearchWord"+searchWord);
+    	if(searchWord.equals("")&&selBox.equals("")) {
+    		PagingDTO paging = new PagingDTO();
+        	int pagenum=Integer.parseInt(request.getParameter("pagenum"));
+        	int contentnum = Integer.parseInt(request.getParameter("contentnum"));
+    		int totalCount = noticeService.getNoticeListTotalCount();
+    		paging.setTotalcount(totalCount);//전체 게시글 지정
+    		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+    		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+    		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+    		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+    		log.info("Last block:"+paging.getTotalcount());
+    		
+    		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+    		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+    		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+    		//
+    		
+    		List<NoticeDTO> nList = new ArrayList(); 
+    		int i = paging.getPagenum()*10;
+    		int j = paging.getContentnum();
+    		HashMap<String, Integer> hMap = new HashMap<>();
+    		hMap.put("pagenum",i);
+    		hMap.put("contentnum", j);
+    		
+    		nList = noticeService.getNoticeList(hMap);
+    		// 페이징 정보 전달.
+    		
+    		model.addAttribute("nList",nList);
+    		model.addAttribute("paging",paging);
+    		nList=null;
+    		paging=null;
+    		log.info(this.getClass() + ".NoticeList end!");
+    	}else {
+    		log.info("이거 실행하고 있어");
+    		PagingDTO paging = new PagingDTO();
+    		//검색하기 위한 변수를 NoticeDTO에 선언하고 사용
+    	
+    		paging.setSearchWord(searchWord);
+    		paging.setSelBox(selBox);
+    		searchWord=paging.getSearchWord().toString();
+    		HashMap<String, Object> hMap = new HashMap<>();
+    		hMap.put("searchWord", searchWord);
+    		
+        	int pagenum=Integer.parseInt(request.getParameter("pagenum"));
+        	int contentnum = Integer.parseInt(request.getParameter("contentnum"));
+        	if(selBox.toString().equals("noticeContent")) {
+        		log.info("이거 실행하고 있어 내용");
+        		int totalCount = noticeService.getNoticeListSearchTotalCount(hMap);
+        		log.info("내용 검색  개수 :"+totalCount);
+        		paging.setTotalcount(totalCount);
+        		//전체 게시글 지정
+        		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+        		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+        		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+        		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+        		
+        		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+        		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+        		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+        	
+        		
+        		List<NoticeDTO> nList = new ArrayList(); 
+        		int i = paging.getPagenum()*10;
+        		int j = paging.getContentnum();
+        	
+        		hMap.put("pagenum",i);
+        		hMap.put("contentnum", j);
+        		
+        		nList = noticeService.getNoticeSearchList(hMap);
+        		// 페이징 정보 전달.
+        		
+        		model.addAttribute("nList",nList);
+        		model.addAttribute("paging",paging);
+        		log.info(this.getClass() + ".NoticeList end!");
+        	}else if(selBox.toString().equals("noticeTitle")) {
+        		log.info("이거 실행하고 있어 제목");
+        		int totalCount = noticeService.getNoticeListSearchTitleCount(hMap);
+        		log.info("제목 검색  개수 :"+totalCount);
+        		paging.setTotalcount(totalCount);
+        		//전체 게시글 지정
+        		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+        		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+        		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+        		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+        		
+        		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+        		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+        		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+        	
+        		
+        		List<NoticeDTO> nList = new ArrayList(); 
+        		int i = paging.getPagenum()*10;
+        		int j = paging.getContentnum();
+        	
+        		hMap.put("pagenum",i);
+        		hMap.put("contentnum", j);
+        		
+        		nList = noticeService.getNoticeSearchTitleList(hMap);
+        		// 페이징 정보 전달.
+        		
+        		model.addAttribute("nList",nList);
+        		model.addAttribute("paging",paging);
+        		log.info(this.getClass() + ".NoticeList end!");
+        	}
+    	}
+    	
 		return "/notice/noticeList";
 	}
 	//ckeditor 등록화면
@@ -104,7 +428,7 @@ public class NoticeController {
 		
 		if(result == 1) {
 			msg="등록되었습니다.";
-			url="/noticeList.do"; //일단은 홈으로
+			url="/noticeList.do?pagenum=1&contentnum=10"; //일단은 홈으로
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
 		}else {
@@ -126,6 +450,9 @@ public class NoticeController {
 		NoticeDTO nDTO = new NoticeDTO(); 
 		nDTO.setNoticeNo(noticeNo);
 		nDTO = noticeService.getNoticeDetail(nDTO);
+		
+		//카운트
+		int updateCount=noticeService.updateNoticeCount(noticeNo);
 		model.addAttribute("nDTO",nDTO);
 		
 		return "/notice/noticeDetail";
@@ -191,7 +518,6 @@ public class NoticeController {
 		
 			//기존에 있는 폴더에서 비교
 			compFile=imgList.get(i).toString().replace("http://localhost:8080/noticeUpdImg/", "");
-			System.out.println("update = 파일이름 확인하라잉1:"+urlConPath);
 			File file = new File(req.getSession().getServletContext().getRealPath("/noticeUpdImg/")+compFile);
 			boolean isExists = file.exists();
 			if(isExists) {
@@ -257,7 +583,7 @@ public class NoticeController {
         PrintWriter printWriter = null;
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-
+        
         try{
           
         	//원본 파일명 받고
@@ -313,6 +639,5 @@ public class NoticeController {
         }
     	log.info(this.getClass() + " 끝인가?");
         return;
-        
     }
 }

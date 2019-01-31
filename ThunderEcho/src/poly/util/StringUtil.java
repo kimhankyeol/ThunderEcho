@@ -25,7 +25,7 @@ public class StringUtil {
 		res=str.replaceAll("\\\\", "\\\\\\\\");
 		return res;
 	}
-	
+	//등록할떄
 	public static List<String> getImgSrc(String str) {
   		Pattern nonValidPattern = Pattern
   				.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
@@ -35,10 +35,23 @@ public class StringUtil {
   		while (matcher.find()) {
   			result.add(matcher.group(1));
   		}
-  		
   		return result;
   	}
-
+	//삭제할떄
+	public static List<String> getDelImgSrc(String str) {
+  		Pattern nonValidPattern = Pattern
+  				.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+  		
+		List<String> result = new ArrayList<>();
+  		Matcher matcher = nonValidPattern.matcher(str);
+  		while (matcher.find()) {
+  			result.add(matcher.group(1));
+  		}
+  		if(result.size()==0) {
+  			result.add("notValue");
+  		}
+  		return result;
+  	}
 
 	
 	//파일 이동 클래스

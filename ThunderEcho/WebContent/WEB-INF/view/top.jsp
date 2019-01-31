@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="container-fluid">  
-          <!-- Navbar Header  --><a href="/main.do" class="navbar-brand"><img src="/img/logo.png" alt="..."></a>
+          <!-- Navbar Header  --><a href="index.html" class="navbar-brand"><img src="https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/logo.png" alt="..."></a>
           <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
           <!-- Navbar Collapse -->
           <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -55,8 +55,8 @@
               </li>
               <li class="nav-item dropdown"><a id="navbarInfoLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Information<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownInfoLink" class="dropdown-menu">
-                  <li><a href="/noticeList.do" class="dropdown-item">공지사항</a></li>
-                   <li><a href="index.html" class="dropdown-item">1대1 문의</a></li>
+                  <li><a href="/noticeList.do?pagenum=1&contentnum=10" class="dropdown-item">공지사항</a></li>
+                   <li><a href="/notice/counsel.do" class="dropdown-item">1:1 문의</a></li>
                 </ul>
               </li>
             </ul>
