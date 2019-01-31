@@ -59,7 +59,7 @@ if(userName.equals("관리자")){
  <div class="container" style="min-height: 80%;">
  <div class="width-100" style="border-top: 2px solid #333;">
 	 <form id="noticeUpdate" action="/noticeUpdate.do">
-	  <div class="form-group" style="margin-top: 10px; color: #2a64b1"><h3>제목</h3></div>
+	  <div class="form-group" style="margin-top:20px; color: #2a64b1"><h3>제목</h3></div>
 	  <input type="text" class="form-control" style="margin-bottom: 20px;" name="title" value="<%=nDTO.getNoticeTitle()%>"/>
 	   <div class="form-group" style="color: #2a64b1"><h3>내용</h3></div>
 		  <textarea name="content" id="content" rows="10" cols="80">
@@ -67,26 +67,30 @@ if(userName.equals("관리자")){
 		  </textarea>
 		   <input type="hidden" name="noticeNo" value="<%=nDTO.getNoticeNo()%>"/>
 	</form>
-	  <input type="button" id="ntUpd" class="btn btn-success" value="수정"/>
-	  <input type="button" onclick="javascript:back()" class="btn btn-danger" value="돌아가기"/>
-	  
+	<div style="width: 100%; margin-top:10%">
+		<button class="btn btn-success" id="ntUpd" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10% ;float:left;">수정</button>
+		<button class="btn btn-danger"  onclick="javascript:back()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10%;">돌아가기</button>
+	</div>
   </div> 
    </div>
 <%@ include file="/WEB-INF/view/footer.jsp" %>
 <%@ include file="/WEB-INF/view/bottomJs.jsp" %>
 <script>
 function back(){
-	location.href="/noticeDetail.do?noticeNo="<%=nDTO.getNoticeNo()%>;
+	location.href="/noticeDetail.do?noticeNo=<%=nDTO.getNoticeNo()%>";
 }
 
 $('#ntUpd').click(function(){
 	if($('input[name=title]').val()==""){
 		alert('공지사항 제목을 입력해주세요.')
 		return false;
-	}else {
+	}else if($('input[name=content]').val()==""){
 		alert('내용을 입력해주세요.');
+		return false;
+	}else{
+		$('#noticeUpdate').submit();
 	}
-	$('#noticeUpdate').submit();
+	
 });
 </script>
 

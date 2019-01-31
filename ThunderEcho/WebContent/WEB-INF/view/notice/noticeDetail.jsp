@@ -1,3 +1,4 @@
+<%@page import="poly.util.DateUtil"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@page import="poly.dto.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
 <script>
 function noticeUpdateView(){
 	location.href="/noticeUpdateView.do?noticeNo=<%=nDTO.getNoticeNo()%>";
@@ -22,6 +26,7 @@ function noticeDetail(){
 </script>
 <%@ include file="/WEB-INF/view/topCssJs.jsp" %>
 <link rel="stylesheet" href="/css/noticeList.css">
+<link rel="stylesheet" href="/css/noticeFont.css">
 </head>
 <body>
  <%@ include file="/WEB-INF/view/top.jsp" %>
@@ -38,29 +43,34 @@ function noticeDetail(){
 	</div>
 </div>
 <div class="container" style="min-height: 80%;">
-	<div class="width-100">
-		<div class="searchWrap">
-			<div style="padding-top: 10px;margin-bottom: 10px;">
-				 <span style="font-size: 1.75rem; font-family: Noto Sans Medium"><%=nDTO.getNoticeTitle()%></span>
-				  <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px" ><%=nDTO.getReadCount() %></span>	
-				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px">조회수<i class="fa fa-hand-pointer-o fa-fw"></i></span>
-				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-right:10px; padding-top: 10px" ><%=nDTO.getRegDate() %></span>	
-				 <span style="font-family:Noto Sans Regular;font-size:15px; float:right; padding-top: 10px">등록일<i class="fa fa-registered fa-fw"></i></span>
-					
+	<div class="width-100" style="padding-bottom: 30px;">
+		<div class="detailWrap">
+			<div class="detailInner">
+				 <span><%=nDTO.getNoticeTitle()%></span>
+				  <span><%=nDTO.getReadCount() %> 회</span>	
+				 <span>조회수<i class="fa fa-hand-pointer-o fa-fw"></i></span>
+				 <span><%=DateUtil.DateFormatter(nDTO.getRegDate().toString())%></span>	
+				 <span>등록일<i class="fa fa-registered fa-fw"></i></span>
 			</div>
 		</div>
 	</div>
+	<div>
+		<%=nDTO.getNoticeContent() %>
+	</div>
 </div>
-
-<div>제목:<%=nDTO.getNoticeTitle() %></div>
-<div class="container" style="min-height:80%"><%=nDTO.getNoticeContent() %></div>
-<%
+	<%
 if(userName.equals("관리자")){
 %>
-<div><button class="btn btn-success" onclick="noticeUpdateView()">수정</button><button class="btn btn-danger" onclick="adminNoticeDetail()">돌아가기</button></div>
+<div class="container">
+	<div style="width: 100%;">
+		<button class="btn btn-success" onclick="javascript:noticeUpdateView()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10% ;float:left;">수정</button>
+		<button class="btn btn-danger" onclick="javascript:adminNoticeDetail()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10%;">돌아가기</button>
+	</div>
+</div>
 <%}else{ %>
-<button class="btn btn-danger" onclick="noticeDetail()">돌아가기</button>
+<div class="container"><button class="btn btn-danger" onclick="noticeDetail()">돌아가기</button></div>
 <%} %>
+
 <%@ include file="/WEB-INF/view/footer.jsp" %>
 <%@ include file="/WEB-INF/view/bottomJs.jsp" %>
 </body>
