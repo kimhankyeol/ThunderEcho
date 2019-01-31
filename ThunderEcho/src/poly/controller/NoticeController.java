@@ -26,6 +26,8 @@ import org.apache.catalina.connector.Request;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +36,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import poly.dto.EmailDTO;
 import poly.dto.NoticeDTO;
 import poly.dto.PagingDTO;
 import poly.service.INoticeService;
 import poly.util.CmmUtil;
+import poly.util.Email;
+import poly.util.EmailSender;
 import poly.util.StringUtil;
 
 @Controller
@@ -46,11 +51,60 @@ public class NoticeController {
 	private INoticeService noticeService; 
 	private Logger log = Logger.getLogger(this.getClass());
 
+	@Autowired
+	private EmailSender emailSender;
 	
 	// 1:1 문의
 	@RequestMapping(value="notice/counsel")
 	public String inquire() throws Exception {
+		log.info(this.getClass() + ".counsel start ~~");
+		log.info(this.getClass() + ".counsel end ~~");
 		return "/notice/counsel";
+	}
+	
+
+	//1:1 문의 이메일 전송 
+	@RequestMapping(value="notice/counselProc", method=RequestMethod.POST)
+	
+	public String counselProc(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass() + ".counselProc start ~~");
+		String user_nm  = req.getParameter("user_nm");
+		String mobile  = req.getParameter("mobile1") + req.getParameter("mobile2") + req.getParameter("mobile3");
+		String phone  = req.getParameter("phone1") + req.getParameter("phone2") + req.getParameter("phone3");
+		String email = req.getParameter("email1") + "@" +req.getParameter("email2");
+		String subject = req.getParameter("subject");
+		String qa_msg = req.getParameter("qa_msg");
+		Email sendEmail = new Email();
+		
+		log.info("user_nm : " + user_nm);
+		log.info("mobile : " + mobile);
+		log.info("phone : " + phone);
+		log.info("email : " + email);
+		log.info("subject : " + subject);
+		log.info("qa_msg: " + qa_msg);
+
+		EmailDTO eDTO = new EmailDTO();
+		eDTO.setUser_nm(user_nm);
+		eDTO.setMobile(mobile);
+		eDTO.setPhone(phone);
+		eDTO.setEmail(email);
+		eDTO.setSubject(subject);
+		eDTO.setQa_msg(qa_msg);
+		
+		sendEmail.setReciver("iko153@naver.com"); //받는사람 이메일 (관리자)
+		sendEmail.setSubject("ThunderEco 1:1 문의입니다."); // 이메일 제목
+		sendEmail.setContent(sendEmail.setContents(eDTO)); //이메일 내용 (1:1문의 내용)
+		emailSender.SendEmail(sendEmail);
+		
+		String msg = "";
+		String url = "";
+		msg = "1:1문의가 접수 되었습니다. 이메일로 답변해드리겠습니다.";
+		url = "/main.do";
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		log.info(this.getClass() + ".counselProc end ~~");
+		return "/alert";
 	}
 	
 	////관리자 ////////////////////////////////////

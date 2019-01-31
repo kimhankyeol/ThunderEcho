@@ -20,7 +20,7 @@
 <div class="container_cs_counsel">
 	<div class="section_form">
 		<div class="harf_area_left">
-			<form>
+			 <form action="/notice/counselProc.do" method="POST">
 				<div class="cs_table" style="width: 50%;">
 					<ul>
 						<li>
@@ -76,7 +76,9 @@
 						</li>
 					</ul>
 				</div>
-			</form>
+				<button type="submit" class="btn">문의하기</button>
+			</form> 
+			
 		</div>
 	</div>
 </div>
