@@ -136,7 +136,6 @@ public class NoticeController {
 			model.addAttribute("url","/thunderAdmin.do");
 		}
 	
-		
 		return "/alert";
 		
 	}
@@ -613,7 +612,7 @@ public class NoticeController {
 		String url = "";
 		if(result == 1) {
 			msg="수정되었습니다.";
-			url="/noticeList.do"; //일단은 홈으로
+			url="/noticeList.do?pagenum=1&contentnum=1"; //일단은 홈으로
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
 		}else {
