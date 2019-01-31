@@ -31,7 +31,7 @@ if(userName.equals("관리자")){
 %>
 <div><button class="btn btn-success" onclick="noticeUpdateView()">수정</button><button class="btn btn-danger" onclick="adminNoticeDetail()">돌아가기</button></div>
 <%}else{ %>
-<button class="btn btn-danger" onclick="noticeDetail()">돌아가기</button>
+<button class="cart-black-button" onclick="noticeDetail()">돌아가기</button>
 <%} %>
 <%@ include file="/WEB-INF/view/footer.jsp" %>
 <%@ include file="/WEB-INF/view/bottomJs.jsp" %>
