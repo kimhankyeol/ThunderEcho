@@ -44,7 +44,7 @@ if(userName.equals("관리자")){
 <!-- 본문 -->
 <div class="subTitleBar">
 	<div class="subTitleIn">
-			<h2 style="color: #2a64b1">공지사항 등록</h2>
+			<h2 style="color: #3f7f00">공지사항 등록</h2>
 			<ul class="smap">
                  <li><a style="color:black;" href="/main.do"><i class="fa fa-home fa-fw"></i></a></li>
                  <li><i class="fa fa-chevron-right fa-fw"></i></li>
@@ -58,15 +58,16 @@ if(userName.equals("관리자")){
  <div class="container" style="min-height: 80%;">
  <div class="width-100" style="border-top: 2px solid #333;">
 	 <form id="noticeInsert" action="/noticeInsert.do">
-	  <div class="form-group" style="margin-top: 10px; color: #2a64b1"><h3>제목</h3></div>
+	  <div class="form-group" style="margin-top: 10px; color: #3f7f00"><h3>제목</h3></div>
 	  <input type="text" class="form-control" style="margin-bottom: 20px;" name="title" placeholder="제목을 입력하세요"/>
-	   <div class="form-group" style="color: #2a64b1"><h3>내용</h3></div>
+	   <div class="form-group" style="color: #3f7f00"><h3>내용</h3></div>
 		  <textarea name="content" id="content" rows="10" cols="80">
 		  </textarea>
 	</form>
-	  <input type="button" id="ntIns" class="btn btn-success" value="등록"/>
-	  <input type="button" onclick="javascript:back()" class="btn btn-danger" value="돌아가기"/>
-	  
+	<div style="text-align:center; padding:15px;">
+		<input type="button" id="ntIns" class="btn btn-success" value="등록"/>
+		<input type="button" onclick="javascript:back()" class="btn btn-danger" value="돌아가기"/>
+	</div>
   </div> 
    </div>
 <%@ include file="/WEB-INF/view/footer.jsp" %>
@@ -92,7 +93,7 @@ $('#ntIns').click(function(){
 	<h1 style="text-align: center">관리자가 아닙니다. </h1>
 	<h2 style="text-align: center">관리자가 아니므로 로그인 해주시길 바랍니다.</h2>
 	<button style="float:left" class="col-md-6 btn btn-success" onclick="javascript:adminLogin()">관리자 로그인 하러가기</button>
-	<button style="wfloat:left" class="col-md-6 btn btn-success" onclick="javascript:thunderHome()">썬더에코 바로가기</button>
+	<button style="float:left" class="col-md-6 btn btn-success" onclick="javascript:thunderHome()">썬더에코 바로가기</button>
 	<script>
 		function adminLogin(){
 			location.href="/thunderAdmin.do";

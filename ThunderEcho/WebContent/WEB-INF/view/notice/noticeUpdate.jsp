@@ -83,7 +83,7 @@ $('#ntUpd').click(function(){
 	if($('input[name=title]').val()==""){
 		alert('공지사항 제목을 입력해주세요.')
 		return false;
-	}else {
+	}else if ($('input[name=content]').val()=="") {
 		alert('내용을 입력해주세요.');
 	}
 	$('#noticeUpdate').submit();

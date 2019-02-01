@@ -103,7 +103,6 @@ button {
 	padding: 12px 20px;
 	border: 1px solid #ddd;
 	background: none;
-	border-radius: 30px;
 	outline: none;
 	font-weight: 300
 }
@@ -3445,7 +3444,8 @@ h4.comments-heading {
 	border-radius: 0px;
 	-webkit-transition: all 0.15s ease-in-out;
 	transition: all 0.15s ease-in-out;
-	margin-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .btn:focus, .btn-template-outlined:focus, .btn.focus, .focus.btn-template-outlined

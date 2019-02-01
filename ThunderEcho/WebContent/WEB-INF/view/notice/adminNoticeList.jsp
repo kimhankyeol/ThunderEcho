@@ -57,7 +57,7 @@ function page(i){
 <div class="container" style="min-height: 80%;">
 	<div class="width-100">
 		<div class="searchWrap">
-			<div class="searchInner">
+			<div class="searchInner" style="display:inline-block">
 					<form id="searBox" style="display:inline-block">
 						<div class="form-group d-flex" style="margin-bottom:0px;">
 							<select class="selBox" name="selBox">
@@ -70,7 +70,7 @@ function page(i){
 							<button type="submit" id="findNotice" class="cart-black-button">검색</button>
 						</div>
 					</form>
-					<div class="checkdel" style="float:right; vertical-align: middle; display:inline-block; padding:0px;">
+					<div class="checkdel" style="float:right; vertical-align: middle; display:inline-block;">
 						<label for="checkAll" class="btn btn-warning" style="color:#ffffff; margin:0px 15px 0 0;">전체 선택</label>
 						<input type="checkbox" id="checkAll" style="display:none" />
 						<input type="button" onclick="javascript:noticeInsert()" class="btn btn-info" value="등록" />
