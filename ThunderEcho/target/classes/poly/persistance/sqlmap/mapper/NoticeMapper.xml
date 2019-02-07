@@ -2,5 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="poly.persistance.mapper.NoticeMapper">
+<!-- 공지사항 등록 -->
+<insert id="insertNotice" parameterType="NoticeDTO" >
+INSERT 
+INTO notice(
+noticeTitle,
+noticeContent,
+userNo,
+regDate
+)
+VALUES (
+#{noticeTitle},
+#{noticeContent},
+1,
+now()
+)
+</insert>
+
+<!-- 공지사항 상세 -->
+<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+SELECT * FROM NOTICE WHERE noticeNo=#{noticeNo}
+</select>
+<!-- 공지사항 수정 -->
+<update id ="updateNotice" parameterType="NoticeDTO">
+UPDATE NOTICE
+SET 
+noticeTitle=#{noticeTitle},
+noticeContent=#{noticeContent},
+regDate=now()
+WHERE 
+noticeNo=#{noticeNo}
+</update>
+
+<!-- 공지사항 페이징 -->
+ <select id="getNoticeList" parameterType="map" resultType="NoticeDTO">
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+</select> 
+
+<select id="getNoticeListTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM NOTICE
+</select>
+<!-- 공지사항 조회수 -->
+<update id="updateNoticeCount" parameterType="string" >
+UPDATE NOTICE
+SET readCount = readCount+1
+WHERE noticeNo = #{noticeNo}
+</update>
+<!-- 관리자 로그인 -->
+<select id="getAdminLogin" parameterType="NoticeDTO" resultType="NoticeDTO">
+SELECT * FROM USERADMIN WHERE userId=#{id} AND userPassword=#{password} 
+</select>
+
+<!-- 내용 검색 페이징 -->
+<select id="getNoticeSearchList" parameterType="map" resultType="NoticeDTO">
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE WHERE noticeContent like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+</select>
+<!-- 내용 검색 총 개수 -->
+<select id="getNoticeSearchTotalCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM NOTICE WHERE noticeContent like CONCAT('%',#{searchWord},'%') 
+</select>
+ <!-- 제목 검색 페이징 -->
+<select id="getNoticeSearchTitleList" parameterType="map" resultType="NoticeDTO">
+	SELECT noticeNo,noticeContent,noticeTitle,userNo,regDate,readCount FROM NOTICE WHERE noticeTitle like CONCAT('%',#{searchWord},'%')  ORDER BY noticeNo desc limit #{pagenum},#{contentnum}
+</select>
+<!--제목 검색 총개수 -->
+<select id="getNoticeListSearchTitleCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM NOTICE WHERE noticeTitle like CONCAT('%',#{searchWord},'%') 
+</select>
+<!-- 공지사항삭제 -->
+<delete id="deleteNotice" parameterType="NoticeDTO">
+DELETE FROM NOTICE WHERE noticeNo=#{noticeNo}
+</delete>
 
 </mapper>
