@@ -24,6 +24,10 @@
 .effect-table td p {
 	margin-bottom:0;
 }
+.text-vertical {
+	display:block;
+	margin:auto;
+}
 </style>
 </head>
 <body>
@@ -57,8 +61,6 @@
 						 	<section style="background:url(/img/airpapa1.jpg) center center;">
 								<div class="row">
 									<div style="color:#ffffff;"class="col-lg-12 text-center">
-									<!-- class에 text-white 적용 -->
-									<!-- 이 부분 배경색이랑 글자색 겹쳐서 안보임!! 사진을 바꾸든 글씨 색을 바꾸든 -윤영 -->
 										<h5>
 											고농도 산화질소를 함유한 플라스마를 생성하는 공기살균, 탈취 시스템
 										</h5>
@@ -146,7 +148,7 @@
 										<div class="col-lg-12" style="text-align:center;">
 											<h3 style="padding:20px;">주요 적용/설치 장소</h3>
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-6 text-vertical">
 											<span style="padding-left:10%;">
 												<b>공동생활 / 노약자</b><br/>
 												요양원, 양로원, 유치원, 영유아/노약자 부양 주택 등<br/>
@@ -159,7 +161,7 @@
 										<div class="col-lg-12">
 											<hr style="padding-top:12px; padding-bottom:12px;">
 										</div>
-										<div class="col-lg-6">
+										<div class="col-lg-6 text-vertical">
 											<span style="padding-left:10%;">
 												<b>의료 / 산업</b><br/>
 												공기청정기로 해결되지 못하는 독소, 독성 물질 발생 또는<br/>
@@ -173,7 +175,7 @@
 											<hr style="padding-top:12px; padding-bottom:12px;">
 										</div>
 										<hr style="padding-top:12px; padding-bottom:12px;">
-										<div class="col-lg-6">
+										<div class="col-lg-6 text-vertical">
 											<span style="padding-left:10%;">
 												<b>지하 / 주거 / 공공장소</b><Br/>
 												각종 냄새로 인한 악취, 곰팡이 발생 구역의 냄새 또는<br/>
