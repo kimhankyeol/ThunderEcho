@@ -4,6 +4,10 @@ package poly.dto;
  * @author 김한결
  * @version 1.0 공지사항 DTO
  */
+/**
+ * @author kim
+ *
+ */
 public class NoticeDTO {
 
 	 private String noticeNo; //기본키 시퀀스 
@@ -21,8 +25,16 @@ public class NoticeDTO {
 	 private String classfication;
 	 private String mobile;
 	 private String email;
+	 private String qnaNo;
 	 
 	 
+	 
+	public String getQnaNo() {
+		return qnaNo;
+	}
+	public void setQnaNo(String qnaNo) {
+		this.qnaNo = qnaNo;
+	}
 	public String getClassfication() {
 		return classfication;
 	}

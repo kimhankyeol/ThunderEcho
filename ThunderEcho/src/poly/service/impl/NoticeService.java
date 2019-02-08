@@ -102,4 +102,58 @@ public class NoticeService implements INoticeService{
 		return noticeMapper.insertQNA(nDTO);
 	}
 	
+	//1대1문의 리스트
+	@Override
+	public List<NoticeDTO> getAdminQnaList(HashMap<String, Integer> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getAdminQnaList(hMap);
+	}
+	
+	//1대1 문의 전체 총 개수
+	@Override
+	public int getQnaListTotalCount() throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getQnaListTotalCount();
+	}
+	//1대1 문의 검색개수
+	@Override
+	public int getAdminQnaListSearchTotalCount(HashMap<String, Object> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getAdminQnaListSearchTotalCount(hMap);
+	}
+	//1대1 검색 문의 리스트
+	@Override
+	public List<NoticeDTO> getAdminQnaSearchList(HashMap<String, Object> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper. getAdminQnaSearchList(hMap);
+	}
+	
+	//1대1 문의 상세보기
+	@Override
+	public NoticeDTO getQnaDetail(NoticeDTO nDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getQnaDetail(nDTO);
+	}
+	
+	//1대1 문의 답변 등록
+	@Override
+	public int insertAnswer(NoticeDTO nDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.insertAnswer(nDTO);
+	}
+
+	@Override
+	public List<NoticeDTO> getCsConfirmNoticeList(HashMap<String, Object> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getCsConfirmNoticeList(hMap);
+	}
+	//1대1 문의 사용자 질문 개수
+	@Override
+	public int getCsConfirmListTotalCount(HashMap<String, Object> hMap) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.getCsConfirmListTotalCount(hMap);
+	}
+
+	
+	
 }

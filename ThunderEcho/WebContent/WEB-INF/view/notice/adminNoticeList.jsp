@@ -18,8 +18,7 @@
 <%@ include file="/WEB-INF/view/topCssJs.jsp" %>
 <!-- 나중에 css 추가  -->
 <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/adminNoticeList.css">
-
+<link rel="stylesheet" href="/css/noticeList.css">
 <script>
 function noticeDetail(i){
 	location.href="/noticeDetail.do?noticeNo="+i;
@@ -30,9 +29,9 @@ function page(i){
 	location.href="/adminNoticeList.do?pagenum="+pagenum+"&contentnum=10";
 }
 //검색함
-	function page1(i) {
-		var pagenum = i;
-		var searchWd = "<%=pDTO.getSearchWord()%>";
+function page1(i){
+	var pagenum = i;
+	var searchWd="<%=pDTO.getSearchWord()%>";
 	var selBox="<%=pDTO.getSelBox()%>";
 	location.href="/adminNoticeList.do?pagenum="+pagenum+"&contentnum=10&searchWord="+searchWd+"&selBox="+selBox;
 }
@@ -57,40 +56,32 @@ function page(i){
 <div class="container" style="min-height: 80%;">
 	<div class="width-100">
 		<div class="searchWrap">
-			<div class="searchInner" style="display:inline-block">
-					<form id="searBox" style="display:inline-block">
-						<div class="form-group d-flex" style="margin-bottom:0px;">
-							<select class="selBox" name="selBox">
-								<option value="noticeTitle" selected="selected">제목</option>
-								<option value="noticeContent">내용</option>
-							</select>
-							<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
-							<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
-							<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
-							<button type="submit" id="findNotice" class="cart-black-button">검색</button>
-						</div>
-					</form>
-					<div class="checkdel" style="float:right; vertical-align: middle; display:inline-block;">
-						<label for="checkAll" class="btn btn-warning" style="color:#ffffff; margin:0px 15px 0 0;">전체 선택</label>
-						<input type="checkbox" id="checkAll" style="display:none" />
-						<input type="button" onclick="javascript:noticeInsert()" class="btn btn-info" value="등록" />
-						<input type="button" onclick="javascript:noticeDel()" class="btn btn-danger" value="삭제" />
+			<div class="searchInner">
+				<form id="searBox">
+					<div  class="form-group d-flex" style="margin-bottom:0px;">
+					<select class="selBox" name="selBox">
+						<option value="noticeTitle" selected="selected">제목</option>
+						<option value="noticeContent">내용</option>
+					</select>
+					<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
+					<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
+					<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+					<input type="button" id="findNotice" class="cart-black-button" value="검색">
 					</div>
-				</div>
+				</form>
+			</div>
 		</div>
 		
-		<div class="noticeStyle3">
-			<div style="background-color: #f9f9f9;"><b><a style="color:black;">체크</a></b></div>
-			<div style="background-color: #f9f9f9;"><b><a style="color:black;">번호</a></b></div>
-			<div style="background-color: #f9f9f9;"><b><a style="color:black;">제목</a></b></div>
+		<div class="noticeStyle1">
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;text-align: left">번호</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;text-align: left">제목</a></b></div>
 			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성자</a></b></div>
 			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성일</a></b></div>
 			<div style="background-color: #f9f9f9;"><b><a style="color:black">조회수</a></b></div>
 		</div>
 	
 	<%for (int i=0 ; i<nList.size(); i++){ %>
-			<div class="noticeStyle4">
-				<div><b><input type="checkbox" name="check" value="<%=nList.get(i).getNoticeNo()%>"/></b></div>
+			<div class="noticeStyle2">
 				<div><b><%=nList.get(i).getNoticeNo()%></b></div>
 				<div onclick="javascript:noticeDetail('<%=nList.get(i).getNoticeNo()%>')"><b><%=nList.get(i).getNoticeTitle()%></b></div>
 				<div>관리자</div>
@@ -98,27 +89,57 @@ function page(i){
 				<div><%=nList.get(i).getReadCount()%>회</div>
 			</div>
 		<%} %>
-		<%if(CmmUtil.nvl(pDTO.getSearchWord()).equals("")) {%>
-		<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
-					   	<a href="javascript:page(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
-					   <%} %>
-					   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
-					   	<a class="chk"  href="javascript:page(<%=i%>);"><%=i %></a> 
-					   <%} %>
-					   <%if(pDTO.isNext()==true){%>
-					   	<a  href="javascript:page(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
-					   <%} %></div>
-		<%}else{ %>
-		<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
-					   	<a href="javascript:page1(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
-					   <%} %>
-					   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
-					   	<a class="chk"  href="javascript:page1(<%=i%>);"><%=i %></a> 
-					   <%} %>
-					   <%if(pDTO.isNext()==true){%>
-					   	<a  href="javascript:page1(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
-					   <%} %></div>
-		
+	<%if(CmmUtil.nvl(pDTO.getSearchWord()).equals("")) {%>
+			<%if(pDTO.getTotalcount()==0) {%>
+			<div style="text-align:center"><h3>현재 검색된 내용이 없습니다.</h3></div>
+			<%}else{ %>
+				<%if(pDTO.getEndPage()<10){ %>
+				<div class="pager" style="clear:both">
+					<%if(pDTO.isPrev()==true){%>
+						<a href="javascript:page(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+						   <%} %>
+						   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+						   	<a class="chk"  href="javascript:page(<%=i%>);"><%=i %></a> 
+						   <%} %>
+						   </div>
+						   
+				<%}else{ %>
+					<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
+						   	<a href="javascript:page(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+						   <%} %>
+						   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+						   	<a class="chk"  href="javascript:page(<%=i%>);"><%=i %></a> 
+						   <%} %>
+						   <%if(pDTO.isNext()==true){%>
+						   	<a  href="javascript:page(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
+						   <%} %></div>
+				<%} %>
+			<%} %>
+	<%}else{ %>
+			<%if(pDTO.getTotalcount()==0) {%>
+			<div style="text-align:center"><h3>현재 검색된 내용이 없습니다.</h3></div>
+			<%}else{ %>
+				<%if(pDTO.getEndPage()<10){ %>
+				<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
+						   	<a href="javascript:page1(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+						   <%} %>
+						   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+						   	<a class="chk"  href="javascript:page1(<%=i%>);"><%=i %></a> 
+						   <%} %>
+						   </div>
+						   
+				<%}else{ %>
+					<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
+						   	<a href="javascript:page1(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+						   <%} %>
+						   <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+						   	<a class="chk"  href="javascript:page1(<%=i%>);"><%=i %></a> 
+						   <%} %>
+						   <%if(pDTO.isNext()==true){%>
+						   	<a  href="javascript:page1(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
+						   <%} %></div>
+				<%} %>
+			<%} %>
 		<%} %>
 	</div>
 </div>
@@ -137,7 +158,7 @@ $(function(){
 	
 	
 })
-//검색 페이징 처리 구문
+
 $(function(){
 	$('#findNotice').click(function(){
 		var searchWord=$('#searchWord').val();
@@ -154,38 +175,8 @@ $(function(){
 	})
 	
 })
-// 체크박스 선택 해제
-$(function(){
-    //최상단 체크박스 클릭
-    $("#checkAll").click(function(){
-        //클릭되었으면
-        if($("#checkAll").prop("checked")){
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-            $("input[name=check]").prop("checked",true);
-            //클릭이 안되있으면
-        }else{
-            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-            $("input[name=check]").prop("checked",false);
-        }
-    })
-})
-//선택 삭제
-//발표 삭제
-function noticeDel(){
-	var noticeNoArr=[];
-	$('input[name=check]:checked').each(function(index){
-		noticeNoArr.push($(this).val());
-	})
-	
-	if($('input[name=check]').is(':checked')==false){
-		alert('삭제할 공지사항이 선택 되지 않았습니다.')
-	}else{
-		location.href="/notice/noticeDelete.do?noticeNoArr="+noticeNoArr;
-	}
-}
-function noticeInsert(){
-	location.href="/noticeInsertView.do"
-}
+/*  */
+
 </script>
 </body>
 </html>

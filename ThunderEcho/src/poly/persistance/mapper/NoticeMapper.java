@@ -52,6 +52,33 @@ public interface NoticeMapper {
 	//1대1 문의 등록
 	public int insertQNA(NoticeDTO nDTO) throws Exception;
 
+	//1대1 문의 리스트
+	public List<NoticeDTO> getAdminQnaList(HashMap<String, Integer> hMap) throws Exception;
+
+	//1대1 문의 총 카운트
+	public int getQnaListTotalCount() throws Exception;
+
+	//1대1 문의 검색 총 카운트 
+	public int getAdminQnaListSearchTotalCount(HashMap<String, Object> hMap) throws Exception;
+	
+	//1대1 문의 검색 내용
+	public List<NoticeDTO> getAdminQnaSearchList(HashMap<String, Object> hMap) throws Exception;
+
+	//1대1 상세보기
+	public NoticeDTO getQnaDetail(NoticeDTO nDTO) throws Exception;
+
+	//1대1 문의 답변 등록
+	public int insertAnswer(NoticeDTO nDTO) throws Exception;
+
+	//1대1 문의 사용자 질문 목록
+	public List<NoticeDTO> getCsConfirmNoticeList(HashMap<String, Object> hMap) throws Exception;
+	
+	//1대1 문의 사용자 질문 개수
+	public int getCsConfirmListTotalCount(HashMap<String, Object> hMap) throws Exception;
+
+
+
+
 	
 	
 	

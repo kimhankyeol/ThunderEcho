@@ -53,7 +53,7 @@ public class NoticeController {
 
 	@Autowired
 	private EmailSender emailSender;
-	
+	//////////////////////////////////////////////////////////////////
 	// 1:1 문의
 	@RequestMapping(value="notice/counsel")
 	public String inquire() throws Exception {
@@ -63,7 +63,7 @@ public class NoticeController {
 	}
 	
 
-	//1:1 문의 이메일 전송 
+	//1:1 문의 insert
 	@RequestMapping(value="notice/counselProc", method=RequestMethod.POST)
 	
 	public String counselProc(HttpServletRequest req, Model model) throws Exception{
@@ -77,7 +77,7 @@ public class NoticeController {
 		String email = req.getParameter("email");
 		String title = req.getParameter("title");
 		String classfication = req.getParameter("classfication");
-/*		NoticeDTO nDTO = new NoticeDTO();
+		NoticeDTO nDTO = new NoticeDTO();
 		nDTO.setNoticeTitle(title);
 		nDTO.setNoticeContent(content);
 		nDTO.setUserName(user_nm);
@@ -93,7 +93,7 @@ public class NoticeController {
 		//이동 전에 폴더
 		String tempPath=req.getSession().getServletContext().getRealPath("/tempImg/");
 		//이동 후에 폴더
-		String newFilePath=req.getSession().getServletContext().getRealPath("/noticeUpdImg/");
+		String newFilePath=req.getSession().getServletContext().getRealPath("/qnaImg/");
 		String fileName="";
 		//temp 에서 - > notice로
 		for (int i = 0; i<imgList.size();i++) {
@@ -106,7 +106,7 @@ public class NoticeController {
 		
 		
 		nDTO.setNoticeTitle(title);
-		nDTO.setNoticeContent(content.replaceAll("tempImg","noticeUpdImg"));
+		nDTO.setNoticeContent(content.replaceAll("tempImg","qnaImg"));
 		
 		int result = noticeService.insertQNA(nDTO);
 		String msg = "";
@@ -115,8 +115,8 @@ public class NoticeController {
 		//여기서 등록이 되면 임시저장소에 업로드된 파일을 이미지 폴더로 옮기면될듯 
 		
 		if(result == 1) {
-			msg="등록되었습니다.";
-			url="/noticeList.do?pagenum=1&contentnum=10"; //일단은 홈으로
+			msg="1대1 문의가 등록되었습니다.";
+			url="/main.do"; //일단은 홈으로
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
 		}else {
@@ -126,35 +126,238 @@ public class NoticeController {
 			model.addAttribute("url",url);
 		}
 		
-		*/
-		
-		Email sendEmail = new Email();
-		
-		
-
-		EmailDTO eDTO = new EmailDTO();
-		eDTO.setUser_nm(user_nm);
-		eDTO.setMobile(mobile);
-		eDTO.setEmail(email);
-		eDTO.setSubject(title);
-		eDTO.setQa_msg(StringEscapeUtils.unescapeHtml3(StringUtil.replaceWordLtGt(req.getParameter("content"))));
-		
-		sendEmail.setReciver("iko153@naver.com"); //받는사람 이메일 (관리자)
-		sendEmail.setSubject("ThunderEco 1:1 문의입니다."); // 이메일 제목
-		sendEmail.setContent(sendEmail.setContents(eDTO)); //이메일 내용 (1:1문의 내용)
-		emailSender.SendEmail(sendEmail);
-		String msg = "";
-		String url = "";
-		
-		msg = "1:1문의가 접수 되었습니다. 이메일로 답변해드리겠습니다.";
-		url = "/main.do";
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		
+		//확인하려면 
 		log.info(this.getClass() + ".counselProc end ~~");
 		return "/alert";
 	}
+	//1대1 문의 관리자 리스트
+	@RequestMapping(value="adminQnaList")
+	public String thunderAdminQnaList(HttpServletRequest request, Model model) throws Exception{
+		
+		log.info(this.getClass() + ".adminQnaList start!");
+    	String classfication = CmmUtil.nvl(request.getParameter("classfication"));
+    	log.info(classfication);
+    	PagingDTO paging = new PagingDTO();
+    	int pagenum=Integer.parseInt(request.getParameter("pagenum"));
+    	int contentnum = Integer.parseInt(request.getParameter("contentnum"));
+    	int totalCount=0;
+    	if(classfication.equals("all")) {
+    		 totalCount = noticeService.getQnaListTotalCount();
+    		paging.setTotalcount(totalCount);//전체 게시글 지정
+    		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+    		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+    		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+    		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+    		log.info("Last block:"+paging.getTotalcount());
+    		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+    		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+    		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+    		paging.setClassfication(classfication);
+    		
+    		List<NoticeDTO> nList = new ArrayList(); 
+    		int i = paging.getPagenum()*10;
+    		int j = paging.getContentnum();
+    		HashMap<String, Integer> hMap = new HashMap<>();
+    		hMap.put("pagenum",i);
+    		hMap.put("contentnum", j);
+    		
+    		nList = noticeService.getAdminQnaList(hMap);
+    		// 페이징 정보 전달.
+    		
+    		model.addAttribute("nList",nList);
+    		model.addAttribute("paging",paging);
+    		nList=null;
+    		paging=null;
+    		log.info(this.getClass() + ".NoticeList end!");
+    	}else {
+    		log.info("이거 실행하고 있어");
+    		HashMap<String, Object> hMap = new HashMap<>();
+    		paging.setClassfication(classfication);
+    		classfication = paging.getClassfication().toString();
+    		log.info(classfication);
+    		hMap.put("classfication", classfication);
+    		
+    		//검색하기 위한 변수를 pagingDTO에 선언하고 사용
+    		if(classfication.equals("buyItem")) {
+    			 totalCount = noticeService.getAdminQnaListSearchTotalCount(hMap);
+    			paging.setTotalcount(totalCount);
+    			 log.info("구매 문의 총 개수 "+ totalCount);
+    		}else if(classfication.equals("scheduleConsult")) {
+    			  totalCount = noticeService.getAdminQnaListSearchTotalCount(hMap);
+    			 paging.setTotalcount(totalCount);
+    		}else if(classfication.equals("as")) {
+    			  totalCount = noticeService.getAdminQnaListSearchTotalCount(hMap);
+    			 paging.setTotalcount(totalCount);
+    			 log.info("구매 문의 총 개수 "+ totalCount);
+    		}else if(classfication.equals("refund")) {
+    			  totalCount = noticeService.getAdminQnaListSearchTotalCount(hMap);
+    			 paging.setTotalcount(totalCount);
+    		}
+	    		
+	    		//전체 게시글 지정
+	    		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+	    		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+	    		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+	    		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+	    		
+	    		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+	    		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+	    		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+	    	
+	    		
+	    		List<NoticeDTO> nList = new ArrayList(); 
+	    		int i = paging.getPagenum()*10;
+	    		int j = paging.getContentnum();
+	    	
+	    		hMap.put("pagenum",i);
+	    		hMap.put("contentnum", j);
+	    		
+	    		nList = noticeService.getAdminQnaSearchList(hMap);
+	    	
+	    		model.addAttribute("nList",nList);
+        		model.addAttribute("paging",paging);
+        		log.info(this.getClass() + ".adminQnaList end!");
+    	}
+		return "/notice/adminQnaList";
+	}
 	
+	//1대1 문의 상세보기
+	@RequestMapping(value="/qnaDetail")
+	public String getQnaDetail(HttpServletRequest req,Model model) throws Exception{
+		String qnaNo = req.getParameter("qnaNo");
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setQnaNo(qnaNo);
+		
+		nDTO = noticeService.getQnaDetail(nDTO);
+		model.addAttribute("nDTO",nDTO);
+		return "/notice/qnaDetail";
+	}
+	
+	//1대1 문의 답변 화면
+	@RequestMapping(value="/qnaAnswer")
+	public String qnaAnswer(HttpServletRequest req,Model model) throws Exception{
+		String qnaNo = req.getParameter("qnaNo");
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setQnaNo(qnaNo);
+		nDTO = noticeService.getQnaDetail(nDTO);
+		model.addAttribute("nDTO",nDTO);
+		return "/notice/qnaAnswer";
+	}
+	//1대1문의 이메일 전송
+	@RequestMapping(value="/answerProc")
+	public String answerProc(HttpServletRequest req,Model model) throws Exception{
+		req.setCharacterEncoding("utf-8");
+		String qnaNo = req.getParameter("qnaNo");
+		String content= CmmUtil.nvl(StringEscapeUtils.unescapeHtml3(StringUtil.replaceWordLtGt(req.getParameter("content"))));
+		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setQnaNo(qnaNo);
+		nDTO = noticeService.getQnaDetail(nDTO);
+		String email = nDTO.getEmail().toString();
+		String title = nDTO.getNoticeTitle().toString();
+		// 파일명을 뽑아오기 위해 태그변환
+		  
+			List imgList = new ArrayList();
+			imgList = StringUtil.getImgSrc(content);
+			String urlConPath="";
+			//이동 전에 폴더
+			String tempPath=req.getSession().getServletContext().getRealPath("/tempImg/");
+			//이동 후에 폴더
+			String newFilePath=req.getSession().getServletContext().getRealPath("/qnaImg/");
+			String fileName="";
+			//temp 에서 - > notice로
+			for (int i = 0; i<imgList.size();i++) {
+				urlConPath=imgList.get(i).toString().replace("http://localhost:8080/tempImg/", tempPath);//fileUrl을 삭제해 파일명만구함
+				System.out.println("파일이름 확인하라잉1:"+urlConPath);
+				fileName=urlConPath.replace(tempPath, "");//fileUrl을 삭제해 파일명만구함
+				System.out.println("파일이름 확인하라잉2:"+fileName);
+				StringUtil.fileMove(tempPath+fileName, newFilePath+fileName);
+			}
+			nDTO.setQnaNo(qnaNo);
+			nDTO.setNoticeContent(content.replaceAll("tempImg","qnaImg"));
+			int result  = noticeService.insertAnswer(nDTO);
+			String msg = "";
+			String url = "";
+			if(result==1) {
+				Email sendEmail = new Email();
+				EmailDTO eDTO = new EmailDTO();
+				eDTO.setEmail(email);
+				eDTO.setSubject(title);
+				eDTO.setQa_msg(nDTO.getNoticeContent());
+				
+				sendEmail.setReciver(nDTO.getEmail().toString()); //받는사람 이메일 (관리자)
+				sendEmail.setSubject(nDTO.getUserName().toString()+"님 안녕하세요."+"[Re]:"+nDTO.getNoticeTitle().toString()+"에 대한 관리자의 답변입니다."); // 이메일 제목
+				sendEmail.setContent(sendEmail.setContents(eDTO)); //이메일 내용 (1:1문의 내용)
+				emailSender.SendEmail(sendEmail);
+				
+				
+				msg = "1:1문의 답변이 등록되었습니다. "+nDTO.getUserName()+"고객님 에게 이메일을 전송하였습니다.";
+				url = "/main.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+			}else {
+				msg = "1:1문의 답변이 등록이 실패 하였습니다.";
+				url = "/main.do";
+				model.addAttribute("msg",msg);
+				model.addAttribute("url",url);
+			}
+	
+		return "alert";
+	}
+	
+	//1대1 문의 확인 검색 화면
+	@RequestMapping(value="/notice/counselView")
+	public String counselConfirm(HttpServletRequest req,Model model) throws Exception{
+		
+		return "/notice/qnaConfirm";
+	}
+	
+	//1대1 문의 검색후 리스트
+	@RequestMapping(value="/counselConfirmList")
+	public String counselConfirmList(HttpServletRequest req,Model model) throws Exception{
+		String userName = req.getParameter("userName");
+		String mobile = req.getParameter("mobile");
+		String email =req.getParameter("email");
+		HashMap<String, Object> hMap = new HashMap<>();
+		hMap.put("userName",userName);
+		hMap.put("mobile", mobile);
+		hMap.put("email", email);
+		
+		PagingDTO paging = new PagingDTO();
+    	int pagenum=Integer.parseInt(req.getParameter("pagenum"));
+    	log.info("pagenum"+pagenum);
+    	int contentnum = Integer.parseInt(req.getParameter("contentnum"));
+    	log.info("contentnum"+contentnum);
+		int totalCount = noticeService.getCsConfirmListTotalCount(hMap);
+		paging.setTotalcount(totalCount);//전체 게시글 지정
+		paging.setPagenum(pagenum-1);// 현재페이지를 페이지 객체에 지정한다 -1 해야 쿼리에서 사용가능
+		paging.setContentnum(contentnum);// 한 페이지에 몇개 씩 게시글을 보여줄지 지정
+		paging.setCurrentblock(pagenum);//현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정함
+		paging.setLastblock(paging.getTotalcount());//마지막 블록 번호를 전체 게시글 수를 통해 정함
+		log.info("Last block:"+paging.getTotalcount());
+		
+		paging.prevnext(pagenum); //현재 페이지 번호로 화살표를 나타낼지 정함
+		paging.setStartPage(paging.getCurrentblock());//시작페이지를 페이지 블록번호로 정함
+		paging.setEndPage(paging.getLastblock(), paging.getCurrentblock());//마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록번호로 정함
+		//
+		
+		List<NoticeDTO> nList = new ArrayList(); 
+		int i = paging.getPagenum()*10;
+		int j = paging.getContentnum();
+
+		hMap.put("pagenum",i);
+		hMap.put("contentnum", j);
+		
+		nList = noticeService.getCsConfirmNoticeList(hMap);
+		log.info(nList.size());
+		// 페이징 정보 전달.
+		
+		model.addAttribute("nList",nList);
+		model.addAttribute("paging",paging);
+		nList=null;
+		paging=null;
+		return "/notice/qnaConfirmList";
+		
+	}
 	////관리자 ////////////////////////////////////
 	//관리자 로그인창
 	@RequestMapping(value="/thunderAdmin")

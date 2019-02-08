@@ -1,5 +1,8 @@
+<%@page import="poly.util.SessionUtil"%>
+<%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String userName=CmmUtil.nvl((String)session.getAttribute("userName")); %>
 <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
@@ -55,8 +58,18 @@
               </li>
               <li class="nav-item dropdown"><a id="navbarInfoLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Information<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownInfoLink" class="dropdown-menu">
-                  <li><a href="/noticeList.do?pagenum=1&contentnum=10" class="dropdown-item">공지사항</a></li>
+                   <%if(SessionUtil.login(userName)){ %>
+                    <li><a href="/adminNoticeList.do?pagenum=1&contentnum=10" class="dropdown-item">관리자 공지사항</a></li>
+                   <li><a href="/adminQnaList.do?pagenum=1&contentnum=10&classfication=all" class="dropdown-item">관리자 1:1 문의</a></li>
+                   <li><a href="/noticeList.do?pagenum=1&contentnum=10" class="dropdown-item">공지사항</a></li>
                    <li><a href="/notice/counsel.do" class="dropdown-item">1:1 문의</a></li>
+                   <li><a href="/notice/counselView.do" class="dropdown-item">1:1 문의 내용 확인</a></li>
+                   <li><a href="/logout.do"class="dropdown-item">로그아웃</a></li>
+                   <%}else{ %>
+                    <li><a href="/noticeList.do?pagenum=1&contentnum=10" class="dropdown-item">공지사항</a></li>
+                   <li><a href="/notice/counsel.do" class="dropdown-item">1:1 문의</a></li>
+                   <li><a href="/notice/counselView.do" class="dropdown-item">1:1 문의 내용 확인</a></li>
+                   <%} %>
                 </ul>
               </li>
             </ul>

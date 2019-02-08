@@ -20,6 +20,17 @@ public class PagingDTO {
 	 private String searchWord;
 	 private String selBox;
 	 
+	 //1대1문의 검색 변수
+	 private String classfication;
+	 
+	 
+	 
+	public String getClassfication() {
+		return classfication;
+	}
+	public void setClassfication(String classfication) {
+		this.classfication = classfication;
+	}
 	public String getSelBox() {
 		return selBox;
 	}
