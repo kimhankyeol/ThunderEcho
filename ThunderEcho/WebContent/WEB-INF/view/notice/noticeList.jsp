@@ -1,3 +1,4 @@
+<%@page import="poly.util.DateUtil"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@page import="poly.dto.NoticeDTO"%>
 <%@page import="poly.dto.PagingDTO"%>
@@ -44,7 +45,7 @@ function page1(i){
 <%@ include file="/WEB-INF/view/top.jsp" %>
 <div class="subTitleBar">
 	<div class="subTitleIn">
-		<h2><img src="/img/notice.jpg" alt="공지사항"></h2>
+		<h2>공지사항</h2>
 			<ul class="smap">
                  <li><a style="color:black;" href="/main.do"><i class="fa fa-home fa-fw"></i></a></li>
                  <li><i class="fa fa-chevron-right fa-fw"></i></li>
@@ -59,24 +60,26 @@ function page1(i){
 		<div class="searchWrap">
 			<div class="searchInner">
 				<form id="searBox">
-					<select class="selBox" name="selBox">
-						<option value="noticeTitle" selected="selected">제목</option>
-						<option value="noticeContent">내용</option>
-					</select>
-					<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
-					<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
-					<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
-					<input type="button" id="findNotice" class="btn btn-success" value="검색">
+					<div class="form-group d-flex" style="margin-bottom:0px;">
+						<select class="selBox" name="selBox">
+							<option value="noticeTitle" selected="selected">제목</option>
+							<option value="noticeContent">내용</option>
+						</select>
+						<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
+						<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
+						<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+						<button type="submit" id="findNotice" class="cart-black-button">검색</button>
+                 	 </div>
 				</form>
 			</div>
 		</div>
 		
 		<div class="noticeStyle1">
-			<div><b><a style="color:black;text-align: left">번호</a></b></div>
-			<div><b><a style="color:black;text-align: left">제목</a></b></div>
-			<div><b><a style="color:black">작성자</a></b></div>
-			<div><b><a style="color:black">작성일</a></b></div>
-			<div><b><a style="color:black">조회수</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;text-align: left">번호</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;text-align: left">제목</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성자</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성일</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">조회수</a></b></div>
 		</div>
 	
 	<%for (int i=0 ; i<nList.size(); i++){ %>
@@ -84,7 +87,7 @@ function page1(i){
 				<div><b><%=nList.get(i).getNoticeNo()%></b></div>
 				<div onclick="javascript:noticeDetail('<%=nList.get(i).getNoticeNo()%>')"><b><%=nList.get(i).getNoticeTitle()%></b></div>
 				<div>관리자</div>
-				<div><%=nList.get(i).getRegDate()%></div>
+				<div><%=DateUtil.DateFormatter(nList.get(i).getRegDate())%></div>
 				<div><%=nList.get(i).getReadCount()%>회</div>
 			</div>
 		<%} %>
@@ -128,7 +131,6 @@ $(function(){
 
 $(function(){
 	$('#findNotice').click(function(){
-	
 	
 		var searchWord=$('#searchWord').val();
 		var selBox=$('select[name=selBox] option:selected').val();

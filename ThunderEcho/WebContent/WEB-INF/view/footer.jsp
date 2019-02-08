@@ -38,7 +38,7 @@
         <div class="container">
           <div class="row">
             <div class="info col-lg-6">
-              <div class="logo"><img src="https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/logo-white.png" alt="..."></div>
+              <div class="logo"><img src="/img/logo.png" alt="ThunderEco"></div>
               <p></p>
               <ul class="list-unstyled">
                 <li> 주소: 서울시 강서구 우장산로 10길.</li>

@@ -73,5 +73,10 @@ SELECT * FROM USERADMIN WHERE userId=#{id} AND userPassword=#{password}
 <delete id="deleteNotice" parameterType="NoticeDTO">
 DELETE FROM NOTICE WHERE noticeNo=#{noticeNo}
 </delete>
+<!-- 1대1 문의  -->
+<insert id="insertQNA" parameterType="NoticeDTO">
+INSERT INTO qna (title,content,classfication,mobile,email,userName) 
+VALUES (#{noticeTitle},#{noticeContent},#{classfication},#{mobile},#{email},#{userName})
+</insert>
 
 </mapper>

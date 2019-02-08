@@ -94,5 +94,12 @@ public class NoticeService implements INoticeService{
 		// TODO Auto-generated method stub
 		return noticeMapper.deleteNotice(nDTO);
 	}
+
+	//1대1문의
+	@Override
+	public int insertQNA(NoticeDTO nDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeMapper.insertQNA(nDTO);
+	}
 	
 }

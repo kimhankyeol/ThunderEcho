@@ -23,7 +23,7 @@
 	position: relative;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:1200px) {
 	 ul.smap {
 		display: none;
 	}
@@ -196,7 +196,7 @@ width:100%
     color: #2a64b1;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:1200px) {
 .noticeStyle1>div:nth-child(1){
 	display:none
 }
@@ -293,7 +293,7 @@ width:100%
 	.detailInner>span:nth-child(5){
 		font-family:Noto Sans DemiLight sans-serif;font-size:15px; float:right; padding-top: 10px;	color: #2a64b1;
 		}
-@media screen and (max-width:960px){
+@media screen and (max-width:1200px){
 	.detailInner>span:nth-child(1){
 		width:100%;
 		color: #2a64b1;
@@ -348,7 +348,7 @@ width:100%
     background: #fff;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width:1200px) {
 		.pager a {
 	    margin: 0 5px;
 	    color: #999;
@@ -385,5 +385,45 @@ width:100%
 		
 }
 
+/*1대1 문의 css*/
+.counselCol1{
+	font-size: 1.75rem;
+	margin-bottom: .5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+    color: inherit;
+    width:20%; 
+    float:left;
+    margin-top:10px;
+    color: gray; 
+    text-align:center;
+}
+.counselColback{
+	width:80%;float:left; margin-bottom: 20px;
+}
 
+.counselCol2{
+	font-size: 1.75rem;
+	margin-bottom: .5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+    color: inherit;
+     width:20%; 
+    float:left;
+    color: gray; 
+    text-align:center;
+    padding-top: 10px;
+}
+
+@media screen and (max-width:1200px) {
+.counselCol1{
+	font-size: 1rem;
+}
+.counselCol2{
+	font-size: 1rem;
+}
+
+}
 
