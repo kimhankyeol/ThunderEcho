@@ -61,7 +61,7 @@ function noticeDetail(){
 	<%
 if(userName.equals("관리자")){
 %>
-<div class="container">
+<div class="container" style="clear:both">
 	<div style="width: 100%;">
 		<button class="btn btn-success" onclick="javascript:noticeUpdateView()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10% ;float:left;">수정</button>
 		<button class="btn btn-danger" onclick="javascript:adminNoticeDetail()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10%;">돌아가기</button>
