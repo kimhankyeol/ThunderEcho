@@ -33,12 +33,13 @@
 <body>
 	<%@ include file="../top.jsp" %>
 	<!-- 상품 섹션 -->
-	<section style="background: url(https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/divider-bg.jpg);" class="divider">
-		<div class="row">
-			<div class="col-lg-6 text-center">
-				<p>Old Collection</p>
+	<section style="background: url(/img/airpapa.png);" class="divider">
+		<div class="row" style="text-align:right;">
+			<div class="col-lg-6"style="max-width:100%;">
+				<p>상품 고유번호</p>
 				<h2 class="h1 text-uppercase no-margin">상품정보</h2>
-				<p>100,000</p><a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
+				<p>100,000원</p>
+				<a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
 			</div>
 		</div>
 	</section>
