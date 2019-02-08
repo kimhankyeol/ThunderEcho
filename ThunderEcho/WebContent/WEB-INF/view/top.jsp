@@ -15,12 +15,12 @@
           </div>
         </div>
         <div class="container-fluid">  
-          <!-- Navbar Header  --><a href="index.html" class="navbar-brand"><img src="https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/logo.png" alt="..."></a>
+          <!-- Navbar Header  --><a href="/" class="navbar-brand"><img src="/img/logo.png" alt="..."></a>
           <button type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
           <!-- Navbar Collapse -->
           <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="navbar-nav mx-auto">
-              <li class="nav-item dropdown"><a id="navbarHomeLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link active">Introduction<i class="fa fa-angle-down"></i></a>
+              <li class="nav-item dropdown"><a id="navbarHomeLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Introduction<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownHomeLink" class="dropdown-menu">
                   <li><a href="/introduction/intro.do" class="dropdown-item">회사 소개</a></li>
                   <li><a href="/introduction/groupChart.do" class="dropdown-item">조직도</a></li>
@@ -29,28 +29,28 @@
               </li>
                <li class="nav-item dropdown"><a id="navbarAirLink"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Air Eco<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownAirLink" class="dropdown-menu">
-                  <li><a href="/airEco/airpapa.do" class="dropdown-item">에어파파1</a></li>
-                  <li><a href="index2.html" class="dropdown-item">멸균기</a></li>
+                  <li><a href="/airEco/airpapa.do" class="dropdown-item">에어파파</a></li>
+                  <li><a href="/airEco/sterilizer.do" class="dropdown-item">멸균기</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown"><a id="navbarGrowthLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Growth Eco<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownGrowthLink" class="dropdown-menu">
-                  <li><a href="index.html" class="dropdown-item">농산 시스템</a></li>
-                   <li><a href="index.html" class="dropdown-item">수산 시스템</a></li>
-                  <li><a href="index2.html" class="dropdown-item">축산 시스템</a></li>
+                  <li><a href="/growthEco/farmSystem.do" class="dropdown-item">농산 시스템</a></li>
+                   <li><a href="/growthEco/marineSystem.do" class="dropdown-item">수산 시스템</a></li>
+                  <li><a href="/growthEco/animalSystem.do" class="dropdown-item">축산 시스템</a></li>
                 </ul>
               </li>
                <li class="nav-item dropdown"><a id="navbarAWELink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">AIR WATER Eco<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownAWELink" class="dropdown-menu">
-                  <li><a href="index.html" class="dropdown-item">악취 제거</a></li>
-                   <li><a href="index.html" class="dropdown-item">수처리</a></li>
+                  <li><a href="/airWaterEco/smellDelete.do" class="dropdown-item">악취 제거</a></li>
+                   <li><a href="/airWaterEco/waterTreatment.do" class="dropdown-item">수처리</a></li>
                 </ul>
               </li>
 			 <li class="nav-item dropdown"><a id="navbarLivingLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Living Eco<i class="fa fa-angle-down"></i></a>
                 <ul aria-labelledby="navbarDropdownLivingLink" class="dropdown-menu">
-                  <li><a href="index.html" class="dropdown-item">식재료 세척</a></li>
-                   <li><a href="index.html" class="dropdown-item">소독고 살균탈취</a></li>
-                   <li><a href="index.html" class="dropdown-item">도구 살균탈취</a></li>
+                  <li><a href="/livingEco/foodWash.do" class="dropdown-item">식재료 세척</a></li>
+                   <li><a href="/livingEco/disinfectWash.do" class="dropdown-item">소독고 살균탈취</a></li>
+                   <li><a href="/livingEco/toolWash.do" class="dropdown-item">도구 살균탈취</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown"><a id="navbarInfoLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">Information<i class="fa fa-angle-down"></i></a>

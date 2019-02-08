@@ -17,6 +17,30 @@ public class NoticeDTO {
 	 private String password;
 	 private String userName;
 
+	 //1대1문의 변수
+	 private String classfication;
+	 private String mobile;
+	 private String email;
+	 
+	 
+	public String getClassfication() {
+		return classfication;
+	}
+	public void setClassfication(String classfication) {
+		this.classfication = classfication;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getUserName() {
 		return userName;
 	}

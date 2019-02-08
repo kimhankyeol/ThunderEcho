@@ -8,6 +8,16 @@ public class EmailDTO {
 	public String email;
 	public String subject;
 	public String qa_msg;
+	public String classfication;
+	
+	
+	
+	public String getClassfication() {
+		return classfication;
+	}
+	public void setClassfication(String classfication) {
+		this.classfication = classfication;
+	}
 	public String getUser_nm() {
 		return user_nm;
 	}

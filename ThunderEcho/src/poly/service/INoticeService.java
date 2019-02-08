@@ -36,5 +36,8 @@ public interface INoticeService {
 	//공지사항 삭제
 	public int deleteNotice(NoticeDTO nDTO) throws Exception;
 
+	//1대1문의 등록
+	public int insertQNA(NoticeDTO nDTO) throws Exception;
+
 
 }

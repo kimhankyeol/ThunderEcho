@@ -20,7 +20,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="/css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/hub/1-4-0/img/favicon.ico">
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <!-- Modernizr-->
     <script src="/js/modernizr.custom.79639.js"></script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>

@@ -68,36 +68,84 @@ public class NoticeController {
 	
 	public String counselProc(HttpServletRequest req, Model model) throws Exception{
 		log.info(this.getClass() + ".counselProc start ~~");
-		String user_nm  = req.getParameter("user_nm");
-		String mobile  = req.getParameter("mobile1") + req.getParameter("mobile2") + req.getParameter("mobile3");
-		String phone  = req.getParameter("phone1") + req.getParameter("phone2") + req.getParameter("phone3");
-		String email = req.getParameter("email1") + "@" +req.getParameter("email2");
-		String subject = req.getParameter("subject");
-		String qa_msg = req.getParameter("qa_msg");
+		
+		req.setCharacterEncoding("utf-8");
+		
+		String user_nm  = req.getParameter("userName");
+		String mobile  = req.getParameter("mobile");
+		String content = CmmUtil.nvl(StringEscapeUtils.unescapeHtml3(StringUtil.replaceWordLtGt(req.getParameter("content"))));
+		String email = req.getParameter("email");
+		String title = req.getParameter("title");
+		String classfication = req.getParameter("classfication");
+/*		NoticeDTO nDTO = new NoticeDTO();
+		nDTO.setNoticeTitle(title);
+		nDTO.setNoticeContent(content);
+		nDTO.setUserName(user_nm);
+		nDTO.setMobile(mobile);
+		nDTO.setEmail(email);
+		nDTO.setClassfication(classfication);
+	
+		// 파일명을 뽑아오기 위해 태그변환
+	  
+		List imgList = new ArrayList();
+		imgList = StringUtil.getImgSrc(content);
+		String urlConPath="";
+		//이동 전에 폴더
+		String tempPath=req.getSession().getServletContext().getRealPath("/tempImg/");
+		//이동 후에 폴더
+		String newFilePath=req.getSession().getServletContext().getRealPath("/noticeUpdImg/");
+		String fileName="";
+		//temp 에서 - > notice로
+		for (int i = 0; i<imgList.size();i++) {
+			urlConPath=imgList.get(i).toString().replace("http://localhost:8080/tempImg/", tempPath);//fileUrl을 삭제해 파일명만구함
+			System.out.println("파일이름 확인하라잉1:"+urlConPath);
+			fileName=urlConPath.replace(tempPath, "");//fileUrl을 삭제해 파일명만구함
+			System.out.println("파일이름 확인하라잉2:"+fileName);
+			StringUtil.fileMove(tempPath+fileName, newFilePath+fileName);
+		}
+		
+		
+		nDTO.setNoticeTitle(title);
+		nDTO.setNoticeContent(content.replaceAll("tempImg","noticeUpdImg"));
+		
+		int result = noticeService.insertQNA(nDTO);
+		String msg = "";
+		String url = "";
+		
+		//여기서 등록이 되면 임시저장소에 업로드된 파일을 이미지 폴더로 옮기면될듯 
+		
+		if(result == 1) {
+			msg="등록되었습니다.";
+			url="/noticeList.do?pagenum=1&contentnum=10"; //일단은 홈으로
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+		}else {
+			msg="등록되지 않았습니다.";
+			url="/main.do"; //일단은 홈으로
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+		}
+		
+		*/
+		
 		Email sendEmail = new Email();
 		
-		log.info("user_nm : " + user_nm);
-		log.info("mobile : " + mobile);
-		log.info("phone : " + phone);
-		log.info("email : " + email);
-		log.info("subject : " + subject);
-		log.info("qa_msg: " + qa_msg);
+		
 
 		EmailDTO eDTO = new EmailDTO();
 		eDTO.setUser_nm(user_nm);
 		eDTO.setMobile(mobile);
-		eDTO.setPhone(phone);
 		eDTO.setEmail(email);
-		eDTO.setSubject(subject);
-		eDTO.setQa_msg(qa_msg);
+		eDTO.setSubject(title);
+		eDTO.setQa_msg(StringEscapeUtils.unescapeHtml3(StringUtil.replaceWordLtGt(req.getParameter("content"))));
 		
 		sendEmail.setReciver("iko153@naver.com"); //받는사람 이메일 (관리자)
 		sendEmail.setSubject("ThunderEco 1:1 문의입니다."); // 이메일 제목
 		sendEmail.setContent(sendEmail.setContents(eDTO)); //이메일 내용 (1:1문의 내용)
 		emailSender.SendEmail(sendEmail);
-		
 		String msg = "";
 		String url = "";
+		
 		msg = "1:1문의가 접수 되었습니다. 이메일로 답변해드리겠습니다.";
 		url = "/main.do";
 		model.addAttribute("msg",msg);

@@ -57,33 +57,35 @@ function page(i){
 <div class="container" style="min-height: 80%;">
 	<div class="width-100">
 		<div class="searchWrap">
-			<div class="searchInner">
-					<form id="searBox">
-						<select class="selBox" name="selBox">
-							<option value="noticeTitle" selected="selected">제목</option>
-							<option value="noticeContent">내용</option>
-						</select>
-						<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
-						<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
-						<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+			<div class="searchInner" style="display:inline-block">
+					<form id="searBox" style="display:inline-block">
+						<div class="form-group d-flex" style="margin-bottom:0px;">
+							<select class="selBox" name="selBox">
+								<option value="noticeTitle" selected="selected">제목</option>
+								<option value="noticeContent">내용</option>
+							</select>
+							<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
+							<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
+							<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+							<button type="submit" id="findNotice" class="cart-black-button">검색</button>
+						</div>
 					</form>
-				</div>
-				<div class="checkdel">
-					<input type="button" id="findNotice" class="btn btn-success" value="검색">
-					<input type="button" onclick="javascript:noticeDel()" style="float:right" class="btn btn-danger" value="삭제" />
-					<label for="checkAll" class="btn btn-warning" style="float:right">전체 선택</label>
-					<input type="checkbox" id="checkAll" style="display:none" />
-					<input type="button" onclick="javascript:noticeInsert()" style="float:right" class="btn btn-info" value="등록" />
+					<div class="checkdel" style="float:right; vertical-align: middle; display:inline-block;">
+						<label for="checkAll" class="btn btn-warning" style="color:#ffffff; margin:0px 15px 0 0;">전체 선택</label>
+						<input type="checkbox" id="checkAll" style="display:none" />
+						<input type="button" onclick="javascript:noticeInsert()" class="btn btn-info" value="등록" />
+						<input type="button" onclick="javascript:noticeDel()" class="btn btn-danger" value="삭제" />
+					</div>
 				</div>
 		</div>
 		
 		<div class="noticeStyle3">
-			<div><b><a style="color:black;">체크</a></b></div>
-			<div><b><a style="color:black;">번호</a></b></div>
-			<div><b><a style="color:black;">제목</a></b></div>
-			<div><b><a style="color:black">작성자</a></b></div>
-			<div><b><a style="color:black">작성일</a></b></div>
-			<div><b><a style="color:black">조회수</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;">체크</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;">번호</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black;">제목</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성자</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">작성일</a></b></div>
+			<div style="background-color: #f9f9f9;"><b><a style="color:black">조회수</a></b></div>
 		</div>
 	
 	<%for (int i=0 ; i<nList.size(); i++){ %>
