@@ -84,7 +84,22 @@ public class StringUtil {
 	  I.delete();
 	 }
 
-
+	 
+	 //1대1 문의 문자 치환
+	 
+	 public static String stringQna(String str) {
+		 
+		 if(str.equals("buyItem")) {
+			 str = "구매 문의";
+		 }else if(str.equals("scheduleConsult")) {
+			 str="일정 상담";
+		 }else if(str.equals("as")) {
+			 str="A/S 신청";
+		 }else if(str.equals("refund")) {
+			 str="환불 및 반품";
+		 }
+		 return str;
+	 }
 
 
 }

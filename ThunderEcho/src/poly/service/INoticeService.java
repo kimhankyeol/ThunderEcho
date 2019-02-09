@@ -38,6 +38,30 @@ public interface INoticeService {
 
 	//1대1문의 등록
 	public int insertQNA(NoticeDTO nDTO) throws Exception;
+	
+	//1대1 문의 리스트
+	public List<NoticeDTO> getAdminQnaList(HashMap<String, Integer> hMap) throws Exception;
+
+	//1대1 문의 총 개수
+	public int getQnaListTotalCount() throws Exception;
+
+	//1대1 문의 검색 개수
+	public int getAdminQnaListSearchTotalCount(HashMap<String, Object> hMap) throws Exception;
+	
+	//1대1 문의 검색 리스트
+	public List<NoticeDTO> getAdminQnaSearchList(HashMap<String, Object> hMap) throws Exception;
+
+	//1대1 문의 상세보기
+	public NoticeDTO getQnaDetail(NoticeDTO nDTO) throws Exception;
+
+	//1대1 문의 답변 등록
+	public int insertAnswer(NoticeDTO nDTO) throws Exception;
+
+	//1대1 문의 검색 후 리스트
+	public List<NoticeDTO> getCsConfirmNoticeList(HashMap<String, Object> hMap) throws Exception;
+
+	//1대1 문의 사용자 검색 개수
+	public int getCsConfirmListTotalCount(HashMap<String, Object> hMap) throws Exception;
 
 
 }

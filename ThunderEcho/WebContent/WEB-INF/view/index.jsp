@@ -16,6 +16,7 @@
 		}
 	</style>
   </head>
+  <body>
     <%@ include file="top.jsp" %>
     <!-- Hero Section-->
     <section class="hero hero-home no-padding">

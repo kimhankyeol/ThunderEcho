@@ -1,7 +1,6 @@
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String userName =CmmUtil.nvl((String)session.getAttribute("userName")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,11 +77,13 @@ function back(){
 }
 
 $('#ntIns').click(function(){
+	var textbox = CKEDITOR.instances['content'].getData();
 	if($('input[name=title]').val()==""){
 		alert('공지사항 제목을 입력해주세요.')
 		return false;
-	}else {
+	}else if(textbox=="") {
 		alert('내용을 입력해주세요.');
+		return false;
 	}
 	$('#noticeInsert').submit();
 });
