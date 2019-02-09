@@ -157,7 +157,6 @@ $(function(){
 $(function(){
 	$('#findNotice').click(function(){
 		var classfication=$('select[name=classfication] option:selected').val();
-		alert(classfication+":")
 		if(String(<%=pDTO.getPagenum()+1%>)=="1"){
 			$('#searBox').submit();
 		}else{
