@@ -228,7 +228,7 @@
 								</div>
 							</section>
 					    </div>
-					    <!-- 제품상세 탭 종료 -->
+						<!-- 제품상세 탭 종료 -->
 					    <!-- 제품스펙 탭 시작 -->
 					    <div role="tabpanel" class="tab-pane" id="profile">
 							<!-- <h3 style="text-align:center; padding-top:20px;">제품스펙</h3> --> <!-- 여기도 없는게 예쁠 듯 -->
@@ -268,7 +268,7 @@
 							</section>
 						</div>
 						<!-- 제품스펙 탭 종료 -->
-					    <!-- 성능분석 탭 시작 -->
+						<!-- 성능분석 탭 시작 -->
 					    <div role="tabpanel" class="tab-pane" id="messages">
 							<!-- <h3 style="text-align:center; padding-top:20px;">성능분석</h3> --><!-- 없는게 아무래도 좋아 -윤영 -->
 							<div class="main-block text-center" style="padding-top:20px;">
