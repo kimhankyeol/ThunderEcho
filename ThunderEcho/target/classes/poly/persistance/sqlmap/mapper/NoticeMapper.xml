@@ -73,5 +73,44 @@ SELECT * FROM USERADMIN WHERE userId=#{id} AND userPassword=#{password}
 <delete id="deleteNotice" parameterType="NoticeDTO">
 DELETE FROM NOTICE WHERE noticeNo=#{noticeNo}
 </delete>
+<!-- 1대1 문의  -->
+<insert id="insertQNA" parameterType="NoticeDTO">
+INSERT INTO qna (title,content,classfication,mobile,email,userName,regDate) 
+VALUES (#{noticeTitle},#{noticeContent},#{classfication},#{mobile},#{email},#{userName},now())
+</insert>
+<!-- 1대1문의 리스트 -->
+ <select id="getAdminQnaList" parameterType="map" resultType="NoticeDTO">
+	SELECT qnaNo,title AS noticeTitle,classfication,userName,regDate FROM qna ORDER BY qnaNo desc limit #{pagenum},#{contentnum}
+</select> 
+<!-- 1대1 문의 총개수 -->
+<select id="getQnaListTotalCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM qna
+</select>
+<!-- 1대1 문의 검색 총 카운트 -->
+<select id="getAdminQnaListSearchTotalCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM qna WHERE classfication like #{classfication}
+</select>
+ <!-- 1대1 문의 검색 페이징 -->
+<select id="getAdminQnaSearchList" parameterType="map" resultType="NoticeDTO">
+	SELECT * FROM qna WHERE classfication like #{classfication}  ORDER BY qnaNo desc limit #{pagenum},#{contentnum}
+</select>
+<!-- 1대1 문의 상세보기  -->
+<select id="getQnaDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+	SELECT qnaNo , title AS noticeTitle, content AS noticeContent , regDate, classfication,userName,email FROM QNA WHERE qnaNo=#{qnaNo}
+</select>
+<!-- 1대1 문의 답변 등록 -->
+<insert id="insertAnswer" parameterType="NoticeDTO">
+INSERT INTO answer (answerContent,qnaNo,regDate) 
+VALUES (#{noticeContent},#{qnaNo},now())
+</insert>
+<!-- 1대1문의 검색후 리스트 t -->
+ <select id="getCsConfirmNoticeList" parameterType="map" resultType="NoticeDTO">
+	SELECT qnaNo,title AS noticeTitle,classfication,userName,regDate,email,mobile FROM qna  WHERE userName=#{userName} and mobile=#{mobile} and email=#{email} ORDER BY qnaNo desc limit #{pagenum},#{contentnum}
+</select> 
+<!-- 1대1문의 사용자 질문 개수 getCsConfirmListTotalCount-->
+<select id="getCsConfirmListTotalCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM qna  WHERE userName=#{userName} and mobile=#{mobile} and email=#{email}
+</select>
+
 
 </mapper>
