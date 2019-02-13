@@ -42,12 +42,23 @@ span{
 ul li a:hover, ul li a:focus {
 	color: #fff; 
 	font-weight: bold; 
-	background-color:#deecbf;
+	background-color:#deecbf; 
 	text-decoration:none;
 }
 ul li a h5 {
 	margin:0;
 	padding: 10px 0;
+}
+.item-img {
+	width: 600px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+}
+.item-price {
+	width: 440px;
+	vertical-align: middle;
+	display: inline-block;
 }
 @media (max-width: 992px) {
 	span{
@@ -61,25 +72,40 @@ ul li a h5 {
 		display : inline-block !important;
 	}
 	.pc_break {
-	display : none !important;
+		display : none !important;
 	}
 	.effect-table {
-	padding-left: 0%;
-    padding-right: 0%;
-}
+		padding-left: 0%;
+   	 padding-right: 0%;
+	}
+	.item-img {
+		width: 100%;
+		margin-bottom: 10%;
+	}
+	.item-price {
+		width: 100%;
+		text-align: center;
+	}
 }
 </style>
 </head>
 <body style="position: static; width: 100%;">
 	<%@ include file="../top.jsp" %>
 	<!-- 상품 섹션 -->
-	<section style="background: url(/img/airpapa.png);" class="divider">
-		<div class="row" style="text-align:right;">
-			<div class="col-lg-6"style="max-width:100%;">
-				<p>상품 고유번호</p>
-				<h2 class="h1 text-uppercase no-margin">상품정보</h2>
-				<p>100,000원</p>
-				<a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
+	<section style="background:#d9d9d9;" class="divider">
+		<div style="width:100%; max-width:1140px; margin:0 auto;">
+		<!-- 상품 이미지 -->
+			<div class="item-img">
+				<img src="/img/intro_1.png">
+			</div>
+		<!-- 상품 가격정보 -->
+			<div class="item-price">
+				<div style="max-width:100%;">
+					<p>상품 고유번호</p>
+					<h2 class="h1 text-uppercase no-margin">상품정보</h2>
+					<p>100,000원</p>
+					<a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
+				</div>
 			</div>
 		</div>
 	</section>
