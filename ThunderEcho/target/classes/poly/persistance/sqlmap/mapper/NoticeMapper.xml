@@ -96,7 +96,7 @@ VALUES (#{noticeTitle},#{noticeContent},#{classfication},#{mobile},#{email},#{us
 </select>
 <!-- 1대1 문의 상세보기  -->
 <select id="getQnaDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-	SELECT qnaNo , title AS noticeTitle, content AS noticeContent , regDate, classfication,userName,email FROM QNA WHERE qnaNo=#{qnaNo}
+	SELECT qnaNo , title AS noticeTitle, content AS noticeContent , regDate, classfication,userName,email,mobile FROM QNA WHERE qnaNo=#{qnaNo}
 </select>
 <!-- 1대1 문의 답변 등록 -->
 <insert id="insertAnswer" parameterType="NoticeDTO">
