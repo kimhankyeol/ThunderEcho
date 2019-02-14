@@ -22,7 +22,6 @@
 	padding:.75rem;
 	vertical-align:middle;
 } 
-
 .effect-table td p {
 	margin-bottom:0;
 }

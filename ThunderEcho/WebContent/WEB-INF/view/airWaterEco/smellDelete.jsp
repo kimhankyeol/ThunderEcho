@@ -1,6 +1,6 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html>
+<html style="overflow:auto;">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>에어파파1</title>
@@ -8,230 +8,320 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="all,follow">
 	<%@ include file="../topCssJs.jsp" %>
+<style>
+.effect-table {
+	display: block;
+	margin: auto;
+	width:85%;
+	max-width:85%;
+	background-color:transparent;
+	padding-left: 10%;
+    padding-right: 10%
+}
+.effect-table td, .effect-table th {
+	padding:.75rem;
+	vertical-align:middle;
+} 
+
+.effect-table td p {
+	margin-bottom:0;
+}
+.text-vertical {
+	display:block;
+	margin:auto;
+}
+span{
+	padding-left:10%;
+}
+.pc_break {
+	display : inline-block !important;
+}
+.m_break {
+	display : none !important;
+	}
+ul li a:hover, ul li a:focus {
+	color: #fff; 
+	font-weight: bold; 
+	background-color:#deecbf; 
+	text-decoration:none;
+}
+ul li a h5 {
+	margin:0;
+	padding: 10px 0;
+}
+.item-img {
+	width: 600px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+}
+.item-price {
+	width: 440px;
+	vertical-align: middle;
+	display: inline-block;
+}
+@media (max-width: 992px) {
+	span{
+		padding-left:0px;
+		padding-bottom:10%;
+	}
+	.tab-content section {
+		padding: 50px 0 0 0;
+	}
+	.m_break {
+		display : inline-block !important;
+	}
+	.pc_break {
+		display : none !important;
+	}
+	.effect-table {
+		padding-left: 0%;
+   	 padding-right: 0%;
+	}
+	.item-img {
+		width: 100%;
+		margin-bottom: 10%;
+	}
+	.item-price {
+		width: 100%;
+		text-align: center;
+	}
+}
+</style>
 </head>
-<body>
+<body style="position: static; width: 100%;">
 	<%@ include file="../top.jsp" %>
 	<!-- 상품 섹션 -->
-	 <section style="background: url(/img/airpapa.png);" class="divider">
-        <div class="row" style="text-align:right;">
-          <div class="col-lg-6" style="max-width:100%;">
-            <p>상품 고유번호</p>
-            <h2 class="h1 text-uppercase no-margin">상품정보</h2>
-            <p>100,000원</p>
-            <a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
-          </div>
-        </div>
-    </section>
-	
-	<!-- 내용 섹션 -->
-	<section>
-		<div>
-			<div role="tabpanel">
-				<div class="container">
-				  <!-- Nav tabs -->
-				  <ul class="nav nav-tabs" role="tablist" style="text-align:center;">
-				    <li role="presentation" class="active" style="width: 33%;"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h5>제품소개</h5></a></li>
-				    <li role="presentation" style="width: 33%;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h5>제품스펙<h5></a></li>
-				    <li role="presentation" style="width: 33%;"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><h5>성능분석</h5></a></li>
-				  </ul>
+	<section style="background:#d9d9d9;" class="divider">
+		<div style="width:100%; max-width:1140px; margin:0 auto;">
+		<!-- 상품 이미지 -->
+			<div class="item-img">
+				<img src="/img/intro_1.png">
+			</div>
+		<!-- 상품 가격정보 -->
+			<div class="item-price">
+				<div style="max-width:100%;">
+					<p>상품 고유번호</p>
+					<h2 class="h1 text-uppercase no-margin">상품정보</h2>
+					<p>100,000원</p>
+					<a href="#" class="btn btn-template wide shop-now">문의하기<i class="icon-bag"></i></a>
 				</div>
-			  <!-- Tab panes -->
-			  <div class="tab-content">
-			  
-			  <!-- 제품상세 -->
-			    <div role="tabpanel" class="tab-pane active" id="home">
-				    	<div class="container" style="padding:50px 0px">
-					    	<h3>제품소개</h3>
-				    	</div>
-				    	<div>
-					  <section style="background:url(/img/airpapa1.jpg) center center; height:500px;">
-						<div class="container" style="padding:inherit;">
-							<div class="row">
-								<div style="color:#ffffff;"class="col-lg-12 text-center"><!-- class에 text-white 적용 -->
-									<h5>
-										고농도 산화질소를 함유한 플라스마를 생성하는 공기살균, 탈취 시스템
-									</h5>
-									<h1>
-										에어파파
-									</h1>
-									<h5>
-										공기정화, 살균, 악취제거, 초미세먼지 제거, 면역력 증강
-									</h5>
-								</div>
-							</div>
-						</div>
-					</section>
-					</div>
-					<!-- 제품 효과 -->
-					<section  class="container" style="background-color: #fffffd; padding:0px;">
-						<h4 style="text-align:center; display: block; margin:50px 0px;">
-							오염공기와 반응하여 배합된 혼합 광물질과의 융합코어 기술에 의하여 수산기와 다량의 산소이온을 발생하고, 탁월한 공기정화 기능, 초미세먼지를 중화시키고 제거
-						</h4>
-						<div class="row">
-							<div style="width:100%">
-								<span  style="text-align:center; width:20%">
-									<strong style="font-size: 600%;">1</strong>
-								</span>
-								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
-									<b>새집, 헌집 증후군 물질 제거</b>
-									<p>암모니아, 폼알데히드, 자일렌, 톨루엔 등 유해물질을 제거하여 증상 완화</p>
-								</span>
-							</div>
-							<div style="width:100%">
-								<span style="text-align:center; width:20%">
-									<strong style="font-size: 600%;">2</strong>
-								</span>
-								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
-									<b>바이러스 및 병원성 세균 살균</b>
-									<p>슈퍼박테리아, 폐렴균, 대장균, 황색포도상구균, 녹농균, 곰팡이균 등 99.9% 살균</p>
-								</span>
-							</div>
-							<div style="width:100%">
-								<span  style="text-align:center; width:20%">
-									<strong style="font-size: 600%;">3</strong>
-								</span>
-								<span  style="text-align:left; display: inline-block; align-items: center; width:70%">
-									<b>다량의 음이온(산소이온) 발생</b>
-									<p>초미세먼지제거, 저항력 증가, 혈액정화 작용</p>
-								</span>
-							</div>
-						</div>
-						<h4 style="text-align:left; display: block; margin:50px 0px;">
-							주요 적용/설치 장소
-						</h4>
-							<div class="row">
-								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
-										<h5>공동생활 / 노약자</h5>
-										<p>요양원, 양로원, 유치원, 영유아/노약자 부양 주택 등 면역력이 약해, 보다 건강한 공기가 필요한 장소</p>
-									</span>
-									<span class="col-lg-6">
-										<!-- <img> -->
-										<img src="/img/detailAirpapa1.jpg" style="height:20%; width:100%; padding-left:15%; padding-right:5%;"/>
-									</span>
-								</div>
-								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
-										<h5>의료 / 산업</h5>
-										<p>공기청정기로 해결되지 못하는 독소, 독성 물질 발생 또는, 병원균 제거가 필요한 장소</p>
-									</span>
-									<span class="col-lg-6">
-										<!-- <img> -->
-										<img src="/img/detailAirpapa1.jpg" style="height:20%; width:100%; padding-left:15%; padding-right:5%;"/>
-									</span>
-								</div>
-								<div class="col-lg-12 row">
-									<span class="col-lg-6" style="padding-left:5%; padding-right:5%; display: grid; align-items: center;">
-										<h5>지하 / 주거 / 공공장소</h5>
-										<p>각종 냄새로 인한 악취, 곰팡이 발생 구역의 냄새 또는, 쾌적한 실내공기 유지를 위한 장소</p>
-									</span>
-									<span class="col-lg-6">
-										<!-- <img> -->
-										<img src="/img/detailAirpapa1.jpg" style="height:20%; width:100%; padding-left:15%; padding-right:5%;"/>
-									</span>
-								</div>
-							</div>
-							<div style="text-align:center; background-color:#bfdaeb">
-							<img src="/img/Nitrogen_oxide.png"style="height:auto; width:100%;"/>
-							<img src="/img/Plasma.jpg"style="height:auto; width:100%;"/>
-							</div>
-					</section>
-			    </div>
-			    
-			    <!-- 제품스펙 -->
-			    <div role="tabpanel" class="tab-pane" id="profile">
-				    	<div class="container" style="padding:50px 0px">
-					    	<h3>제품스펙</h3>
-				    	</div>
-					  <section>
-						<div class="container">
-							<div class="row">
-								<div class="table-responsive">
-								  <table class="table">
-								    <tbody>
-								    	<tr>
-								    		<td><h5>면적</h5></td>
-								    		<td>82~115(25~35평)</td>
-								    	</tr>
-								    	<tr>
-								    		<td><h5>모델번호</h5></td>
-								    		<td>airpapa(멸균기), SPR-190122</td>
-								    	</tr>
-								    	<tr>
-								    		<td><h5>크기</h5></td>
-								    		<td>160mm*350mm*800mm</td>
-								    	</tr>
-								    	<tr>
-								    		<td><h5>무게</h5></td>
-								    		<td>20kg</td>
-								    	</tr>
-								    	<tr>
-								    		<td><h5>전력</h5></td>
-								    		<td>220V, 60Hz, 70wh</td>
-								    	</tr>
-								    	<tr>
-								    		<td><h5>오존 레벨</h5></td>
-								    		<td>0.00ppm</td>
-								    	</tr>
-								    	
-								    </tbody>
-								  </table>
-								</div>
-							</div>
-						</div>
-					</section>
-			    </div>
-			    
-			    
-			    <!-- 성적 -->
-			    <div role="tabpanel" class="tab-pane" id="messages">
-				    	<div class="container" style="padding:50px 0px">
-					    	<h3>성능분석</h3>
-				    	</div>
-				      <div class="main-block">
-				        <div class="container">
-				          <div class="row">
-				           
-				            <div class="site-links col-lg-4 col-md-6">
-				              <h5 class="text-uppercase">대장균</h5>
-				              <img src="/img/testCertficarion.png"/>
-				              <ul class="list-unstyled">
-				                <li>KCL 시험성적서</li>
-				              </ul>
-				            </div>
-				            <div class="site-links col-lg-4 col-md-6">
-				              <h5 class="text-uppercase">살구균</h5>
-				              <img src="/img/testCertficarion.png"/>
-				              <ul class="list-unstyled">
-				                <li>KCL 시험성적서</li>
-				              </ul>
-				            </div>
-				             <div class="site-links col-lg-4 col-md-6">
-				              <h5 class="text-uppercase">황생균</h5>
-				              <img src="/img/testCertficarion.png"/>
-				              <ul class="list-unstyled">
-				                <li>KCL 시험성적서</li>
-				              </ul>
-				            </div>
-				            <div class="site-links col-lg-4 col-md-6">
-				              <h5 class="text-uppercase">황색포도구상균</h5>
-				              <img src="/img/testCertficarion.png"/>
-				              <ul class="list-unstyled">
-				                <li>KCL 시험성적서</li>
-				              </ul>
-				            </div>
-				           
-				          </div>
-				        </div>
-				      </div>
-			    
-			    </div>
-			  </div>
-			
 			</div>
 		</div>
 	</section>
-	
+	<!-- 내용 섹션 -->
+	<section style="padding: 50px 0 0 0;">
+		<div role="tabpanel">
+			<div class="container">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist" style="text-align:center;">
+					<li role="presentation" class="hover" style="width: 33%; align-self: center;"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="width:100%;"><h5>제품소개</h5></a></li>
+					<li role="presentation" class="hover" style="width: 33%; align-self: center;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="width:100%;"><h5>제품스펙</h5></a></li>
+					<li role="presentation" class="hover" style="width: 33%; align-self: center;"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="width:100%;"><h5>성능분석</h5></a></li>
+				</ul>
+			</div>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- 제품상세 탭 시작 -->
+				<div role="tabpanel" class="tab-pane active" id="home" style="padding-top:20px;">
+					<!-- <h3 style="text-align:center; padding-top:20px;">제품소개</h3> --><!-- 해당 머릿글 삭제하는게 예뻐 보일 듯 -윤영 -->
+					<div style="background:url(/img/airpapa1.jpg) center center; padding:100px 0;">
+						<div class="container" style="padding:inherit;">
+							<div class="row">
+								<div style="color:#ffffff;"class="col-lg-12 text-center">
+									<h1>
+										고농도악취제거시스템
+									</h1>
+									<h5>
+										썬더볼트방전시스템과 활성이온수 생성기술 및<br class="m_break"> 마이크로버블 기술이 융합된
+									</h5>
+									<h5>
+										환경난제를 해결할<br class="m_break"> 미래지향형 신기술
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 제품 영향 -->
+					<section style="padding:50px 0;">
+						<h4 style="text-align:center; display: block;">
+							고농도악취제거시스템의 영향
+						</h4>
+						<h5 style="text-align:center; display: block;">
+							악취제거 뿐만 아니라 대기 중 또는 <br class="m_break">실내공기질을 크게 개선하여<br class="m_break">
+							<br class="pc_break">
+							인체의 해독·면역기능 <br class="m_break">강화에 기여합니다.
+						</h5>
+						<div class="row" style="padding-top:20px;">
+							<table class="effect-table">
+								<tbody>
+									<tr>
+										<td style="font-size: 300%; text-align:center; width:20%;">
+											<b>1</b>
+										</td>
+										<td>
+											<b>실내 공기질 개선 및 강력한 살균작용</b>
+											<p>바이러스 감염 예방 및 스트레스성 장기 기능 저하 예방</p>
+										</td>
+									</tr>
+									<tr>
+										<td style="font-size: 300%; text-align:center;">
+											<b>2</b>
+										</td>
+										<td>
+											<b>강력한 항산화제(SOD)인 산화질소(NO) 발생</b>
+											<p>체내 활성산소 수치를 저하시키며, 혈관을 확장</p>
+											<small>신진대사를 촉진하며 면역체계 기능을 강화</small>
+											<small>성인병(질병)을 예방</small>
+										</td>
+									</tr>
+									<tr>
+										<td style="font-size: 300%; text-align:center;">
+											<b>3</b>
+										</td>
+										<td>
+											<b>신진대사 촉진 및 면역체계 기능 강화</b>
+											<p>악취제거시스템의 기능에 의한 활성산소 수치 저하, 혈관 순화 촉진</p>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align:center;">
+											<small style="color: red;">
+											음용수의 경우 수중에 산화질소를 클로이드 상태로 <br class="m_break">
+											유지하여 흡입함으로 공기 흡입보다 2배 이상의 효과를 <br class="m_break">
+											단시간 내에 볼 수 있습니다.
+											</small>
+											<small>
+											(출처 : 1998년 노벨생리의학상 수상자 루이스 <br class="m_break">이그나로박사 논문 중 발췌)
+											</small>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+					<!-- 제품 장점 -->
+					<section style="padding:50px 0;">
+						<h4 style="text-align:center; display: block;">
+							고농도악취제거시스템의 장점
+						</h4>
+						<div class="container" style="padding-top:20px;">
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<img src="/img/smellDelete4.png" style="height:auto; max-width:80%;" />
+								</div>
+							</div>
+							<div class="row" style="padding-top:60px;">
+								<div class="col-lg-4 text-center">
+									<img src="/img/smellDelete1.png" style="height:auto; max-width:100%;" />
+								</div>
+								<br class="m_break">
+								<div class="col-lg-4 text-center">
+									<img src="/img/smellDelete2.png" style="height:auto; max-width:100%;" />
+								</div>
+								<br class="m_break">
+								<div class="col-lg-4 text-center">
+									<img src="/img/smellDelete3.png" style="height:auto; max-width:100%;" />
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<!-- 제품상세 탭 종료 -->
+				<!-- 제품스펙 탭 시작 -->
+				<div role="tabpanel" class="tab-pane" id="profile">
+					<section style="padding:50px 0;">
+						<h4 style="text-align:center; display: block;">
+							고농도악취제거시스템 FLOW
+						</h4>
+						<div class="container" style="padding-top:20px;">
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<img src="/img/smellDeleteSpec1.png" style="height:auto; max-width:100%;" />
+								</div>
+								<div class="col-lg-12 text-center">
+									<img src="/img/smellDeleteSpec2.png" style="height:auto; max-width:100%;" />
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h4 style="text-align:center; display: block;">
+							대기 중의 고농도 악취제거 원리
+						</h4>
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<img src="/img/smellDeleteFlow.png" style="height:auto; max-width:100%;" />
+								</div>
+								<div class="col-lg-12 text-center">
+									<img src="/img/smellDeleteFlowDetail.png" style="height:auto; max-width:100%;" />
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+				<!-- 제품스펙 탭 종료 -->
+				<!-- 성능분석 탭 시작 -->
+				<div role="tabpanel" class="tab-pane" id="messages">
+					<section style="padding:50px 0;">
+				   		<h4 style="text-align:center; display: block;">
+				   			고농도악취제거시스템 가동 결과
+				   		</h4>
+				   		<div class="container">
+				   			<div class="row text-center">
+				   				<div class="col-lg-6">
+				   					<img src="/img/smellResult4.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   				<div class="col-lg-6 text-vertical">
+				   					<img src="/img/smellResult5.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   			</div>
+				   		</div>
+				   	</section>
+				   	<section style="padding:50px 0;">
+				   		<h4 style="text-align:center; display: block;">
+				   			고농도악취제거시스템 수치 측정 결과
+				   		</h4>
+				   		<div class="container">
+				   			<div class="row text-center">
+				   				<div class="col-lg-4">
+				   					<img src="/img/smellResult1.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   				<div class="col-lg-4">
+				   					<img src="/img/smellResult2.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   				<div class="col-lg-4">
+				   					<img src="/img/smellResult3.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   				<div class="col-lg-12">
+				   					<small>
+				   						음이온 2,000,000 이상, 산화질소 6.5ppm, 7.5ppm
+				   					</small>
+				   				</div>
+				   			</div>
+				   		</div>
+				   	</section>
+				   	<section style="padding:50px 0;">
+				   		<h4 style="text-align:center; display: block;">
+				   			고농도 악취제거시스템 조립 광경
+				   		</h4>
+				   		<div class="container">
+				   			<div class="row text-center">
+				   				<div class="col-lg-6">
+				   					<img src="/img/smellAssem1.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   				<div class="col-lg-6">
+				   					<img src="/img/smellAssem2.png" style="height:auto; max-width:100%;" />
+				   				</div>
+				   			</div>
+				   		</div>
+				   	</section>
+					<!-- 성능분석 탭 종료 -->
+				</div>
+			</div>
+		</div>
+	</section>
 	<%@ include file="../footer.jsp" %>
 	<%@ include file="../bottomJs.jsp" %>
 </body>
