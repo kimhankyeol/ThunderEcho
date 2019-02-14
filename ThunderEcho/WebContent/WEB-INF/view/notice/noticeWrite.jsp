@@ -65,7 +65,7 @@ if(userName.equals("관리자")){
 	</form>
 	<div style="text-align:center; padding:15px;">
 		<input type="button" id="ntIns" class="cart-black-button" value="등록"/>
-		<input type="button" onclick="javascript:back()" class="cart-black-button" value="돌아가기"/>
+		<input type="button" onclick="javascript:back()" class="cart-black-button" style="background: rgba(0, 0, 0, 0.50)" value="돌아가기"/>
 	</div>
   </div> 
    </div>

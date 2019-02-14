@@ -137,6 +137,7 @@ nav ul, li {
 	font-family: 'Noto Sans Regular';
 	float: left;
 	width: 10%;
+	height: 43px;
 }
 
 .noticeStyle4>div:nth-child(2) {
@@ -304,16 +305,14 @@ nav ul, li {
 }
 
 .selBox {
-	padding: 10px;
-	border: 1px solid #ddd;
+	padding: 2px;
+	border: 2px solid #ddd;
 	background: #fff;
-	font-size:0.8em;
 }
 
 #searchWord {
-	width: 60%;
-	padding: 1px;
-	border: 1px solid #ddd;
+	padding: 2px;
+	border: 2px solid #ddd;
 	background: #fff;
 }
 

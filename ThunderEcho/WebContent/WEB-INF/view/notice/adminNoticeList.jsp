@@ -37,7 +37,21 @@ function page(i){
    location.href="/adminNoticeList.do?pagenum="+pagenum+"&contentnum=10&searchWord="+searchWd+"&selBox="+selBox;
 }
 </script>
-
+<style>
+.checkdel {
+	display: inline-block;
+    width: 58%;
+    text-align: right;
+}
+@media (max-width: 992px) {
+	.checkdel {
+	    display: inline-block;
+   		width: 100%;
+    	padding: 7px;
+    	text-align: center;
+	}
+}
+</style>
 
 </head>
 <body>
@@ -55,70 +69,72 @@ function page(i){
    </div>
 </div>
 <div class="container" style="min-height: 80%;">
-   <div class="width-100">
-      <div class="searchWrap">
-         <div class="searchInner">
-               <form id="searBox">
-                  <select class="selBox" name="selBox">
-                     <option value="noticeTitle" selected="selected">제목</option>
-                     <option value="noticeContent">내용</option>
-                  </select>
-                  <input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
-                  <input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
-                  <input type="text" name="searchWord" id="searchWord" maxlength="25"/>
-               </form>
-            </div>
-            <div class="checkdel">
-               <input type="button" id="findNotice" class="btn btn-success" value="검색">
-               <input type="button" onclick="javascript:noticeDel()" style="float:right" class="btn btn-danger" value="삭제" />
-               <label for="checkAll" class="btn btn-warning" style="float:right">전체 선택</label>
-               <input type="checkbox" id="checkAll" style="display:none" />
-               <input type="button" onclick="javascript:noticeInsert()" style="float:right" class="btn btn-info" value="등록" />
-            </div>
-      </div>
-      
-      <div class="noticeStyle3">
-         <div><b><a style="color:black;">체크</a></b></div>
-         <div><b><a style="color:black;">번호</a></b></div>
-         <div><b><a style="color:black;">제목</a></b></div>
-         <div><b><a style="color:black">작성자</a></b></div>
-         <div><b><a style="color:black">작성일</a></b></div>
-         <div><b><a style="color:black">조회수</a></b></div>
-      </div>
-   
-   <%for (int i=0 ; i<nList.size(); i++){ %>
-         <div class="noticeStyle4">
-            <div><b><input type="checkbox" name="check" value="<%=nList.get(i).getNoticeNo()%>"/></b></div>
-            <div><b><%=nList.get(i).getNoticeNo()%></b></div>
-            <div onclick="javascript:noticeDetail('<%=nList.get(i).getNoticeNo()%>')"><b><%=nList.get(i).getNoticeTitle()%></b></div>
-            <div>관리자</div>
-            <div><%=nList.get(i).getRegDate()%></div>
-            <div><%=nList.get(i).getReadCount()%>회</div>
-         </div>
-      <%} %>
-      <%if(CmmUtil.nvl(pDTO.getSearchWord()).equals("")) {%>
-      <div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
-                     <a href="javascript:page(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
-                  <%} %>
-                  <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
-                     <a class="chk"  href="javascript:page(<%=i%>);"><%=i %></a> 
-                  <%} %>
-                  <%if(pDTO.isNext()==true){%>
-                     <a  href="javascript:page(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
-                  <%} %></div>
-      <%}else{ %>
-      <div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
-                     <a href="javascript:page1(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
-                  <%} %>
-                  <%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
-                     <a class="chk"  href="javascript:page1(<%=i%>);"><%=i %></a> 
-                  <%} %>
-                  <%if(pDTO.isNext()==true){%>
-                     <a  href="javascript:page1(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
-                  <%} %></div>
-      
-      <%} %>
-   </div>
+	<div class="width-100">
+		<div class="searchWrap">
+			<div class="searchInner" style="display: inline-block; width: auto;">
+				<form id="searBox">
+					<div class="form-group d-flex" style="margin-bottom:0px;">
+						<select class="selBox" name="selBox">
+							<option value="noticeTitle" selected="selected">제목</option>
+							<option value="noticeContent">내용</option>
+						</select>
+							<input type="hidden" name="pagenum" value="<%=pDTO.getPagenum()+1%>"/>
+							<input type="hidden" name="contentnum" value="<%=pDTO.getContentnum()%>"/>
+							<input type="text" name="searchWord" id="searchWord" maxlength="25"/>
+							<input type="button" id="findNotice" class="cart-black-button" value="검색">
+					</div>
+				</form>
+			</div>
+			<div class="checkdel">
+				<label for="checkAll" class="btn btn-warning" style="margin-left: 10px;margin-right: 10px;color:#fff; margin:0px;">전체 선택</label>
+				<input type="checkbox" id="checkAll" style="display:none" />
+				<input type="button" onclick="javascript:noticeInsert()" class="btn btn-info" value="등록" />
+				<input type="button" onclick="javascript:noticeDel()" style="margin:0px;" class="btn btn-danger" value="삭제" />
+			</div>
+		</div>
+		<div class="noticeStyle3">
+			<div><b><a style="color:black;">체크</a></b></div>
+			<div><b><a style="color:black;">번호</a></b></div>
+			<div><b><a style="color:black;">제목</a></b></div>
+			<div><b><a style="color:black">작성자</a></b></div>
+			<div><b><a style="color:black">작성일</a></b></div>
+			<div><b><a style="color:black">조회수</a></b></div>
+		</div>
+		
+		<%for (int i=0 ; i<nList.size(); i++){ %>
+		<div class="noticeStyle4">
+			<div><b><input type="checkbox" name="check" value="<%=nList.get(i).getNoticeNo()%>"/></b></div>
+			<div><b><%=nList.get(i).getNoticeNo()%></b></div>
+			<div onclick="javascript:noticeDetail('<%=nList.get(i).getNoticeNo()%>')"><b><%=nList.get(i).getNoticeTitle()%></b></div>
+			<div>관리자</div>
+			<div><%=nList.get(i).getRegDate()%></div>
+			<div><%=nList.get(i).getReadCount()%>회</div>
+		</div>
+		<%} %>
+		<%if(CmmUtil.nvl(pDTO.getSearchWord()).equals("")) {%>
+		<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
+			<a href="javascript:page(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+			<%} %>
+			<%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+			<a class="chk"  href="javascript:page(<%=i%>);"><%=i %></a> 
+			<%} %>
+			<%if(pDTO.isNext()==true){%>
+			<a  href="javascript:page(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
+			<%} %>
+		</div>
+		<%}else{ %>
+		<div class="pager" style="clear:both"><%if(pDTO.isPrev()==true){%>
+			<a href="javascript:page1(<%=pDTO.getStartPage()-1%>);">&laquo;</a> 
+			<%} %>
+			<%for(int i=pDTO.getStartPage();i<pDTO.getEndPage()+1;i++){ %>
+			<a class="chk"  href="javascript:page1(<%=i%>);"><%=i %></a> 
+			<%} %>
+			<%if(pDTO.isNext()==true){%>
+			<a  href="javascript:page1(<%=pDTO.getEndPage()+1%>);">&raquo;</a> 
+			<%} %>
+		</div>
+		<%} %>
+	</div>
 </div>
 
 <!-- 페이저 부분 -->

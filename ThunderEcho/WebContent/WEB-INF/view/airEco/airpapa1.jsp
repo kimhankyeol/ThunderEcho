@@ -119,23 +119,26 @@ ul li a h5 {
 						<li role="presentation" class="hover" style="width: 33%; align-self: center;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="width:100%;"><h5>제품스펙</h5></a></li>
 						<li role="presentation" class="hover" style="width: 33%; align-self: center;"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="width:100%;"><h5>성능분석</h5></a></li>
 					</ul>
+				</div>
 					<!-- Tab panes -->
 					<div class="tab-content">
 				 		<!-- 제품상세 탭 시작 -->
 				    	<div role="tabpanel" class="tab-pane active" id="home" style="padding-top:20px;">
 					    	<!-- <h3 style="text-align:center; padding-top:20px;">제품소개</h3> --><!-- 해당 머릿글 삭제하는게 예뻐 보일 듯 -윤영 -->
 						 	<div style="background:url(/img/airpapa1.jpg) center center; padding:100px 0;">
-								<div class="row">
-									<div style="color:#ffffff;"class="col-lg-12 text-center">
-										<h5>
-											고농도 산화질소를 함유한 플라스마를<br class="m_break"> 생성하는 공기살균, 탈취 시스템
-										</h5>
-										<h1>
-											에어파파
-										</h1>
-										<h5>
-											공기정화, 살균, 악취제거,<br class="m_break"> 초미세먼지 제거, 면역력 증강
-										</h5>
+						 		<div class="container" style="padding:inherit;">
+									<div class="row">
+										<div style="color:#ffffff;"class="col-lg-12 text-center">
+											<h5>
+												고농도 산화질소를 함유한 플라스마를<br class="m_break"> 생성하는 공기살균, 탈취 시스템
+											</h5>
+											<h1>
+												에어파파
+											</h1>
+											<h5>
+												공기정화, 살균, 악취제거,<br class="m_break"> 초미세먼지 제거, 면역력 증강
+											</h5>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -286,7 +289,7 @@ ul li a h5 {
 					    <!-- 제품스펙 탭 시작 -->
 					    <div role="tabpanel" class="tab-pane" id="profile">
 							<!-- <h3 style="text-align:center; padding-top:20px;">제품스펙</h3> --> <!-- 여기도 없는게 예쁠 듯 -->
-							<section>
+							<section class="container">
 								<div class="row">
 									<div class="table-responsive">
 								  		<table class="table">
@@ -325,7 +328,7 @@ ul li a h5 {
 						<!-- 성능분석 탭 시작 -->
 					    <div role="tabpanel" class="tab-pane" id="messages">
 							<!-- <h3 style="text-align:center; padding-top:20px;">성능분석</h3> --><!-- 없는게 아무래도 좋아 -윤영 -->
-							<div class="main-block text-center" style="padding-top:20px;">
+							<div class="container main-block text-center" style="padding-top:20px;">
 								<div class="row">
 									<div class="site-links col-md-6">
 										<h5 class="text-uppercase">대장균</h5>
@@ -360,7 +363,6 @@ ul li a h5 {
 						</div>
 						<!-- 성능분석 탭 종료 -->
 					</div>
-				</div>
 			</div>
 		</div>
 	</section>
