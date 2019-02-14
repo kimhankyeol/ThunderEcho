@@ -133,10 +133,8 @@ ul li a h5 {
 										고농도악취제거시스템
 									</h1>
 									<h5>
-										썬더볼트방전시스템과 활성이온수 생성기술 및<br class="m_break"> 마이크로버블 기술이 융합된
-									</h5>
-									<h5>
-										환경난제를 해결할<br class="m_break"> 미래지향형 신기술
+										썬더볼트방전시스템과 활성이온수<br class="m_break"> 생성기술 및 마이크로버블 기술이<br class="pc_break"><br class="m_break">
+										융합된 환경난제를 해결할 <br class="m_break">미래지향형 신기술
 									</h5>
 								</div>
 							</div>
