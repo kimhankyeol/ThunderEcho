@@ -45,13 +45,6 @@
                 <li> 대표이사 : 폴리텍</li>
                 <li> 사업자등록번호 123-45-67890</li>
               </ul>
-              <ul class="social-menu list-inline">
-                <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-                <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
-              </ul>
             </div>
           <!--   <div class="site-links col-lg-2 col-md-6">
               <h5 class="text-uppercase">Shop</h5>
@@ -74,8 +67,8 @@
               </ul>
             </div> -->
             <div class="newsletter col-lg-6">
-              <h5 class="text-uppercase">고객 콜센터</h5>
-              <p> 1588 - 1588.</p>
+              <h1 style="color:#fff"class="text-uppercase">고객 콜센터</h1>
+              <h4 style="color:#fff"> 1588 - 1588</h4>
               <ul class="list-unstyled">
                 <li> 평일 AM 09:00 - PM 06:00</li>
                 <li> 토요일 AM 09:00 - PM 02:00</li>
