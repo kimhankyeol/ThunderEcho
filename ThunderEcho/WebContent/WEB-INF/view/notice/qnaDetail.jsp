@@ -32,17 +32,17 @@ function qnaDetail(){
  <%@ include file="/WEB-INF/view/top.jsp" %>
  <div class="subTitleBar">
 	<div class="subTitleIn">
-		<h2>관리자 Q&A</h2>
+		<h2 style="font-size:1.75rem;"> 1:1 문의 내용</h2>
 			<ul class="smap">
                  <li><a style="color:black;" href="/main.do"><i class="fa fa-home fa-fw"></i></a></li>
                  <li><i class="fa fa-chevron-right fa-fw"></i></li>
                   <li class="en"><a style="color:black" href="/thunderAdmin.do"><i class="fa fa-user-secret fa-fw"></i>Admin</a></li>
                  <li><i class="fa fa-chevron-right fa-fw"></i></li>
-                 <li><a style="color:black" href="/adminQnaList.do?pagenum=1&contentnum=10&classfication=all"><i class="fa fa-list-alt fa-fw"></i> 관리자 Q&A</a></li>
+                 <li><a style="color:black" href="/adminQnaList.do?pagenum=1&contentnum=10&classfication=all"><i class="fa fa-list-alt fa-fw"></i> 1:1 문의 내용</a></li>
        		</ul>
 	</div>
 </div>
-<div class="container" style="min-height: 80%;">
+<div class="container" style="min-height: auto;">
 	<div class="width-100" style="padding-bottom: 30px;">
 		<div class="detailWrap">
 			<div class="detailInner">
@@ -59,21 +59,27 @@ function qnaDetail(){
 		<div>고객 연락처 : <%=nDTO.getMobile() %></div>
 		<div>고객 이메일 : <%=nDTO.getEmail() %></div>
 	</div>
-	<div>
+	<div style="margin: 20px 0;">
 		<%=nDTO.getNoticeContent() %>
 	</div>
 </div>
 	<%
 if(userName.equals("관리자")){
 %>
-<div class="container" style="clear:both">
-	<div style="width: 100%;">
-		<button class="btn btn-success" onclick="javascript:qnaAnswer()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10% ;float:left;">답변하기</button>
-		<button class="btn btn-danger" onclick="javascript:qnaList()" style="width: 45%; margin-left: 2.5%; margin-right: 2.5%; margin-bottom: 10%;">돌아가기</button>
+ <div class="container">
+ 	<div class="width-100" style="border-top: 2px solid #333;padding-top:20px">
+ 		<div style="text-align:center; padding:15px;">
+			<input type="button" class="cart-black-button" onclick="javascript:qnaAnswer()" value="답변하기">
+			<input type="button" class="cart-black-button" onclick="javascript:qnaList()" style="background: rgba(0, 0, 0, 0.50)" value="돌아가기">
+		</div>
 	</div>
 </div>
 <%}else{ %>
-<div class="container"><button class="btn btn-danger" onclick="qnaDetail()">돌아가기</button></div>
+ <div class="container">
+ 	<div class="width-100" style="border-top: 2px solid #333;padding-top:20px">
+		<div style="text-align:center; padding:15px;"><input type="button" class="cart-black-button" onclick="qnaDetail()" value="돌아가기"></div>
+	</div>>
+</div>
 <%} %>
 
 <%@ include file="/WEB-INF/view/footer.jsp" %>

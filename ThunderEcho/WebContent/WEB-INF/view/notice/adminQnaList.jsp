@@ -44,7 +44,7 @@ function page1(i){
 <%@ include file="/WEB-INF/view/top.jsp" %>
 <div class="subTitleBar">
 	<div class="subTitleIn">
-		<h2>관리자 Q&A</h2>
+		<h2>관리자 1:1문의</h2>
 			<ul class="smap">
                  <li><a style="color:black;" href="/main.do"><i class="fa fa-home fa-fw"></i></a></li>
                  <li><i class="fa fa-chevron-right fa-fw"></i></li>

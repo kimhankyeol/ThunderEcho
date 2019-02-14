@@ -73,10 +73,10 @@
 			<span class="form-group counselCol2">이메일</span>
 			<span class="counselColback"><input type="email" class="form-control" name="email" placeholder="답변을 받을 이메일을 입력해주세요."/></span>
 		</div>
-		<center>
- 		<input type="button" id="ntIns" class="btn btn-success"  value="등록">
-	    <input type="button" onclick="javascript:back()" class="btn btn-danger" value="돌아가기"/>
-		</center>
+		<div style="text-align:center; padding:15px;">
+	 		<input type="button" id="ntIns" class="cart-black-button"  value="등록">
+		    <input type="button" onclick="javascript:back()" class="cart-black-button" style="background: rgba(0, 0, 0, 0.50);" value="돌아가기"/>
+		</div>
 	</form>
   </div> 
 </div>
